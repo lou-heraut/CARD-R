@@ -59,12 +59,12 @@ CARD$P1.NApct_lim = 3
 CARD$P1.NAyear_lim = 10
 
 ### P2 _______________________________________________________________
-CARD$P2.funct = list(meanRA=mean, meanRAl=mean, meanRAs=mean)
+CARD$P2.funct = list("mean-RA"=mean, "mean-RAl"=mean, "mean-RAs"=mean)
 CARD$P2.funct_args = list(list("RA", na.rm=TRUE), list("RAl", na.rm=TRUE), list("RAs", na.rm=TRUE))
 CARD$P2.time_step = "none"
 
 ### P3 _______________________________________________________________
 CARD$P3.funct = list(Rl_ratio=divided, Rs_ratio=divided)
-CARD$P3.funct_args = list(list("meanRAl", "meanRA"), list("meanRAs", "meanRA"))
+CARD$P3.funct_args = list(list("mean-RAl", "mean-RA"), list("mean-RAs", "mean-RA"))
 CARD$P3.time_step = "none"
 

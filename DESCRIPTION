@@ -37,7 +37,7 @@ Imports:
     EXstat
 Depends: EXstat
 Remotes:
-    super-lou/EXstat
+    louis-heraut/EXstat
 RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
 URL: https://louis-heraut.github.io/CARD/

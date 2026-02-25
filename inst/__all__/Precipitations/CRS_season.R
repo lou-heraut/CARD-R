@@ -81,10 +81,10 @@ CARD$P1.compress = TRUE
 
 ### P2 _______________________________________________________________
 CARD$P2.funct = list(
-  meanRSA_obs_DJF=mean, meanRSA_obs_MAM=mean,
-  meanRSA_obs_JJA=mean, meanRSA_obs_SON=mean,
-  meanRSA_sim_DJF=mean, meanRSA_sim_MAM=mean,
-  meanRSA_sim_JJA=mean, meanRSA_sim_SON=mean
+  "mean-RSA_obs_DJF"=mean, "mean-RSA_obs_MAM"=mean,
+  "mean-RSA_obs_JJA"=mean, "mean-RSA_obs_SON"=mean,
+  "mean-RSA_sim_DJF"=mean, "mean-RSA_sim_MAM"=mean,
+  "mean-RSA_sim_JJA"=mean, "mean-RSA_sim_SON"=mean
 )
 CARD$P2.funct_args = list(
   list("RSA_obs_DJF", na.rm=TRUE),
@@ -104,9 +104,9 @@ CARD$P3.funct = list(
   CRS_JJA=divided, CRS_SON=divided
 )
 CARD$P3.funct_args = list(
-  list("meanRSA_sim_DJF", "meanRSA_obs_DJF"),
-  list("meanRSA_sim_MAM", "meanRSA_obs_MAM"),
-  list("meanRSA_sim_JJA", "meanRSA_obs_JJA"),
-  list("meanRSA_sim_SON", "meanRSA_obs_SON")
+  list("mean-RSA_sim_DJF", "mean-RSA_obs_DJF"),
+  list("mean-RSA_sim_MAM", "mean-RSA_obs_MAM"),
+  list("mean-RSA_sim_JJA", "mean-RSA_obs_JJA"),
+  list("mean-RSA_sim_SON", "mean-RSA_obs_SON")
 )
 CARD$P3.time_step = "none"
