@@ -1,23 +1,23 @@
-# CARD [<img src="figures/flower_alt_hex.png" align="right" width=160 height=160 alt=""/>](https://github.com/louis-heraut/EXstat/)
+# CARD [<img src="figures/flower_alt_hex.png" align="right" width=160 height=160 alt=""/>](https://github.com/lou-heraut/EXstat/)
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/louis-heraut/CARD/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/louis-heraut/CARD/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/lou-heraut/CARD/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/lou-heraut/CARD/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green)](https://lifecycle.r-lib.org/articles/stages.html)
-![](https://img.shields.io/github/last-commit/louis-heraut/CARD)
+![](https://img.shields.io/github/last-commit/lou-heraut/CARD)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md) 
 <!-- badges: end -->
 
 **CARD** is an efficient and user-friendly solution for aggregating daily hydroclimatological time series data in R, made possible through the use of parameterization files.
 
-More precisely, this package aims at regroup all relevant aggregated hydroclimatological variable procedures into a CARD and serves as an interface to the core aggregation process carried out by the [EXstat](https://github.com/louis-heraut/EXstat) package.
+More precisely, this package aims at regroup all relevant aggregated hydroclimatological variable procedures into a CARD and serves as an interface to the core aggregation process carried out by the [EXstat](https://github.com/lou-heraut/EXstat) package.
 
-This project was carried out for National Research Institute for Agriculture, Food and the Environment (Institut National de Recherche pour l’Agriculture, l’Alimentation et l’Environnement, [INRAE](https://agriculture.gouv.fr/inrae-linstitut-national-de-recherche-pour-lagriculture-lalimentation-et-lenvironnement) in french) and is at the core of [MAKAHO](https://github.com/louis-heraut/MAKAHO) which won the [2024 Open Science Research Data Award](https://www.enseignementsup-recherche.gouv.fr/fr/remise-des-prix-science-ouverte-des-donnees-de-la-recherche-2024-98045) in the “Creating the Conditions for Reuse” category.
+This project was carried out for National Research Institute for Agriculture, Food and the Environment (Institut National de Recherche pour l’Agriculture, l’Alimentation et l’Environnement, [INRAE](https://agriculture.gouv.fr/inrae-linstitut-national-de-recherche-pour-lagriculture-lalimentation-et-lenvironnement) in french) and is at the core of [MAKAHO](https://github.com/lou-heraut/MAKAHO) which won the [2024 Open Science Research Data Award](https://www.enseignementsup-recherche.gouv.fr/fr/remise-des-prix-science-ouverte-des-donnees-de-la-recherche-2024-98045) in the “Creating the Conditions for Reuse” category.
 
 
 ## Installation
 For latest development version in R
 ``` R
-remotes::install_github("louis-heraut/CARD")
+remotes::install_github("lou-heraut/CARD")
 ```
 
 
@@ -225,10 +225,10 @@ If you want to select specific variables to extract from your custom CARD direct
 
 ## What is a CARD ?
 
-### [inst/\_\_all\_\_](https://github.com/louis-heraut/CARD/blob/main/inst/__all__) directory
-In this directory, you can find all the different CARDs available, organized by topic and type of aggregation: serie or criteria. In the [EXstat](https://github.com/louis-heraut/EXstat) terminology, a criterion is an aggregated variable that does not retain any temporal extension, unlike a serie variable, which maintains a temporal extension even after the aggregation process.
+### [inst/\_\_all\_\_](https://github.com/lou-heraut/CARD/blob/main/inst/__all__) directory
+In this directory, you can find all the different CARDs available, organized by topic and type of aggregation: serie or criteria. In the [EXstat](https://github.com/lou-heraut/EXstat) terminology, a criterion is an aggregated variable that does not retain any temporal extension, unlike a serie variable, which maintains a temporal extension even after the aggregation process.
 
-All CARDs have the same structure, as exemplified by the annual average daily flow [`QA`](https://github.com/louis-heraut/CARD/blob/main/inst/__all__/Flow/Mean_Flows/serie/QA.R) in [`__all__/Flow/Mean_Flows/serie`](https://github.com/louis-heraut/CARD/tree/main/inst/__all__/Flow/Mean_Flows/serie):
+All CARDs have the same structure, as exemplified by the annual average daily flow [`QA`](https://github.com/lou-heraut/CARD/blob/main/inst/__all__/Flow/Mean_Flows/serie/QA.R) in [`__all__/Flow/Mean_Flows/serie`](https://github.com/lou-heraut/CARD/tree/main/inst/__all__/Flow/Mean_Flows/serie):
 ``` R
 #   ___                _ 
 #  / __| __ _  _ _  __| |
@@ -296,12 +296,12 @@ CARDs are separated into 2 main parts: `INFO` and `PROCESS`.
 ##### INFO
 In this part, you can find all the necessary information about the variable represented by this CARD. There are English and French versions for parameters such as the unit, the name, and the description. Global info are general info that do not need translation.
 
-This information is not merely informational; it serves as metadata for [EXstat](https://github.com/louis-heraut/EXstat).
+This information is not merely informational; it serves as metadata for [EXstat](https://github.com/lou-heraut/EXstat).
 
-All of these parameters are optional because each of them has a default value based on the [`__default__.R`](https://github.com/louis-heraut/CARD/blob/main/inst/__default__.R) CARD, which you can find in the [inst](https://github.com/louis-heraut/CARD/blob/main/inst) directory. However, you are definitely encouraged to fill out most of them.
+All of these parameters are optional because each of them has a default value based on the [`__default__.R`](https://github.com/lou-heraut/CARD/blob/main/inst/__default__.R) CARD, which you can find in the [inst](https://github.com/lou-heraut/CARD/blob/main/inst) directory. However, you are definitely encouraged to fill out most of them.
 
 ##### PROCESS
-In the PROCESS part, you will find steps needed to extract the desired variable. The parameters listed here are parameters that you can use in [EXstat](https://github.com/louis-heraut/EXstat)'s [`process_extraction()`](https://github.com/louis-heraut/EXstat/blob/main/R/process_extraction.R) function. Here, there is only one step because we only need to calculate a yearly mean and no other type of aggregation. However, for example, we can add another step like:
+In the PROCESS part, you will find steps needed to extract the desired variable. The parameters listed here are parameters that you can use in [EXstat](https://github.com/lou-heraut/EXstat)'s [`process_extraction()`](https://github.com/lou-heraut/EXstat/blob/main/R/process_extraction.R) function. Here, there is only one step because we only need to calculate a yearly mean and no other type of aggregation. However, for example, we can add another step like:
 
 ``` R
 ### P2 _______________________________________________________________
@@ -312,10 +312,10 @@ CARD$P2.time_step = "none"
 
 And that will now be the modulus of the flow, which is the average of the annual average daily flow, labeled as `meanQA`.
 
-### [R/](https://github.com/louis-heraut/CARD/tree/main/R) directory
+### [R/](https://github.com/lou-heraut/CARD/tree/main/R) directory
 In this directory, you can find all the different functions needed for the aggregation process in CARDs. They are ordered by type of application, but it may take some time to search and understand what is available or not. This is where you can modify or add your own function.
 
-This directory also contains the core functions for [CARD management](https://github.com/louis-heraut/CARD/blob/main/R/CARD_management.R) and [CARD extraction](https://github.com/louis-heraut/CARD/blob/main/R/CARD_process.R), which allow users to interact with the CARD formatting in connection with the [EXstat](https://github.com/louis-heraut/EXstat) package.
+This directory also contains the core functions for [CARD management](https://github.com/lou-heraut/CARD/blob/main/R/CARD_management.R) and [CARD extraction](https://github.com/lou-heraut/CARD/blob/main/R/CARD_process.R), which allow users to interact with the CARD formatting in connection with the [EXstat](https://github.com/lou-heraut/EXstat) package.
 
 
 ### You need a new CARD ?
@@ -326,7 +326,7 @@ This directory also contains the core functions for [CARD management](https://gi
 
 ## FAQ
 📬 — **I would like an upgrade / I have a question / Need to reach me**  
-Feel free to [open an issue](https://github.com/louis-heraut/CARD/issues) ! I’m actively maintaining this project, so I’ll do my best to respond quickly.  
+Feel free to [open an issue](https://github.com/lou-heraut/CARD/issues) ! I’m actively maintaining this project, so I’ll do my best to respond quickly.  
 I’m also reachable on my institutional INRAE [email](mailto:louis.heraut@inrae.fr?subject=%5BCARD%5D) for more in-depth discussions.
 
 🛠️ — **I found a bug**  
@@ -335,9 +335,9 @@ I’m also reachable on my institutional INRAE [email](mailto:louis.heraut@inrae
 - *Best Solution* : Fix the issue and submit a pull request. This is the fastest way to get a bug fixed.
 
 🚀 — **Want to contribute ?**  
-If you don't know where to start, [open an issue](https://github.com/louis-heraut/CARD/issues).
+If you don't know where to start, [open an issue](https://github.com/lou-heraut/CARD/issues).
 
-If you want to try by yourself, why not start by also [opening an issue](https://github.com/louis-heraut/CARD/issues) to let me know you're working on something ? Then:
+If you want to try by yourself, why not start by also [opening an issue](https://github.com/lou-heraut/CARD/issues) to let me know you're working on something ? Then:
 
 - Fork this repository  
 - Clone your fork locally and make changes (or even better, create a new branch for your modifications)

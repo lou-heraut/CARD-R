@@ -37,10 +37,10 @@ Imports:
     EXstat
 Depends: EXstat
 Remotes:
-    louis-heraut/EXstat
+    lou-heraut/EXstat
 RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
-URL: https://louis-heraut.github.io/CARD/
+URL: https://lou-heraut.github.io/CARD/
 Suggests:
     airGRdatasets,
     knitr,
