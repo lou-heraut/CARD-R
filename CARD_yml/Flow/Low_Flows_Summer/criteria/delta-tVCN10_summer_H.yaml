@@ -1,0 +1,65 @@
+id: delta-tVCN10_summer_H
+version: "1.0"
+authors: []
+date: "2026-04-30"
+
+meta:
+  en:
+    variable: [delta-tVCN10_summer_H1, delta-tVCN10_summer_H2, delta-tVCN10_summer_H3]
+    unit: day
+    name: Average change of the date of the summer minimum of 10-day mean flows between the {horizon} horizon and historical period
+    description: Months from May to November
+    method: |
+      1. no temporal aggregation - 10-day centered moving average
+      2. annual aggregation [05-01, 11-30] - date of the minimum
+      3. no temporal aggregation - calculation of the average change between the historical period and the {horizon} horizon
+    sampling_period: ["05-01", "11-30"]
+    topic: "Flow, Low Flows, Seasonality"
+    horizon_labels: {H1: near, H2: middle, H3: distant}
+
+  fr:
+    variable: [delta-tVCN10_été_H1, delta-tVCN10_été_H2, delta-tVCN10_été_H3]
+    unit: jour
+    name: "Changement moyen de la date du minimum estival des débits moyens sur 10 jours entre l'horizon {horizon} et la période historique"
+    description: Mois de mai à novembre
+    method: |
+      1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+      2. agrégation annuelle [01-05, 30-11] - date du minimum
+      3. aucune agrégation temporelle - calcul du changement moyen entre la période historique et l'horizon {horizon}
+    sampling_period: ["01-05", "30-11"]
+    topic: "Débit, Basses Eaux, Saisonnalité"
+    horizon_labels: {H1: proche, H2: moyen, H3: lointain}
+
+  global:
+    input_vars: Q
+    preferred_sampling_period: "01-01"
+    is_date: true
+    to_normalise: false
+    horizons:
+      H0: ["1976-01-01", "2005-08-31"]
+      H1: ["2021-01-01", "2050-12-31"]
+      H2: ["2041-01-01", "2070-12-31"]
+      H3: ["2070-01-01", "2099-12-31"]
+    palette: ["#60265e", "#893687", "#c05fbe", "#dba3da", "#edd1ec",
+              "#f6ddd3", "#edbaa7", "#e08765", "#CD5629", "#8f3c1d"]
+
+process:
+  P1:
+    funct:
+      VC10_summer: [rollmean_center, "Q", {k: 10}]
+    time_step: none
+    keep: all
+
+  P2:
+    funct:
+      tVCN10_summer: [which.minNA, "VC10_summer", true]
+    sampling_period: ["05-01", "11-30"]
+    NApct_lim: 3
+    NAyear_lim: 10
+
+  P3:
+    funct:
+      delta-tVCN10_summer_H1: [get_deltaX, "tVCN10_summer", "date", {past: $H0, futur: $H1, to_normalise: false}]
+      delta-tVCN10_summer_H2: [get_deltaX, "tVCN10_summer", "date", {past: $H0, futur: $H2, to_normalise: false}]
+      delta-tVCN10_summer_H3: [get_deltaX, "tVCN10_summer", "date", {past: $H0, futur: $H3, to_normalise: false}]
+    time_step: none

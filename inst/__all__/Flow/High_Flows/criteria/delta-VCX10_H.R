@@ -38,7 +38,7 @@ CARD$P.variable_en = paste0("delta-VCX10_", Horizon)
 CARD$P.unit_en = "%"
 CARD$P.name_en = paste0("Average change of annual maximum of the 10-day moving average of daily flows between the ", Horizon_en, " horizon and historical period")
 CARD$P.description_en = ""
-CARD$P.method_en = paste0("1. no temporal aggregation - 3-day centered moving average
+CARD$P.method_en = paste0("1. no temporal aggregation - 10-day centered moving average
 2. annual aggregation [Month of minimum monthly flows] - maximum
 3. no temporal aggregation - calculation of the average change between the historical period and the ", Horizon_en, " horizon")
 CARD$P.sampling_period_en = "Month of minimum monthly flows"

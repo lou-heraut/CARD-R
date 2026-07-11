@@ -1,0 +1,73 @@
+id: delta-tVCN10_H
+version: "1.0"
+authors: []
+date: "2026-04-28"
+
+meta:
+  en:
+    variable: [delta-tVCN10_H1, delta-tVCN10_H2, delta-tVCN10_H3]
+    unit: day
+    name:
+      - Average change of the date of the annual minimum of 10-day mean flows between the near horizon and historical period
+      - Average change of the date of the annual minimum of 10-day mean flows between the middle horizon and historical period
+      - Average change of the date of the annual minimum of 10-day mean flows between the distant horizon and historical period
+    description: ""
+    method: |
+      1. no temporal aggregation - 10-day centered moving average
+      2. annual aggregation [Month of maximum monthly flows] - date of the minimum
+      3. no temporal aggregation - calculation of the average change between the historical period and the {horizon} horizon
+    horizon_labels: {H1: near, H2: middle, H3: distant}
+    sampling_period: Month of maximum monthly flows
+    topic: "Flow, Low Flows, Seasonality"
+
+  fr:
+    variable: [delta-tVCN10_H1, delta-tVCN10_H2, delta-tVCN10_H3]
+    unit: jour
+    name:
+      - Changement moyen de la date du minimum annuel des débits moyens sur 10 jours entre l'horizon proche et la période historique
+      - Changement moyen de la date du minimum annuel des débits moyens sur 10 jours entre l'horizon moyen et la période historique
+      - Changement moyen de la date du minimum annuel des débits moyens sur 10 jours entre l'horizon lointain et la période historique
+    description: ""
+    method: |
+      1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+      2. agrégation annuelle [Mois du maximum des débits mensuels] - date du minimum
+      3. aucune agrégation temporelle - calcul du changement moyen entre la période historique et l'horizon {horizon}
+    horizon_labels: {H1: proche, H2: moyen, H3: lointain}
+    sampling_period: Mois du maximum des débits mensuels
+    topic: "Débit, Basses Eaux, Saisonnalité"
+
+  global:
+    input_vars: Q
+    preferred_sampling_period: "01-01"
+    is_date: true
+    to_normalise: false
+    palette: ["#60265e", "#893687", "#c05fbe", "#dba3da", "#edd1ec",
+              "#f6ddd3", "#edbaa7", "#e08765", "#CD5629", "#8f3c1d"]
+    horizons:
+      H0: ["1976-01-01", "2005-08-31"]
+      H1: ["2021-01-01", "2050-12-31"]
+      H2: ["2041-01-01", "2070-12-31"]
+      H3: ["2070-01-01", "2099-12-31"]
+
+process:
+  P1:
+    funct:
+      VC10: [rollmean_center, "Q", {k: 10}]
+    time_step: none
+    keep: all
+
+  P2:
+    funct:
+      tVCN10: [which.minNA, "VC10", true]
+    sampling_period:
+      type: adaptive
+      funct: [max, "Q", {skipna: true}]
+    NApct_lim: 3
+    NAyear_lim: 10
+
+  P3:
+    funct:
+      delta-tVCN10_H1: [get_deltaX, "tVCN10", "date", {past: $H0, futur: $H1, to_normalise: false}]
+      delta-tVCN10_H2: [get_deltaX, "tVCN10", "date", {past: $H0, futur: $H2, to_normalise: false}]
+      delta-tVCN10_H3: [get_deltaX, "tVCN10", "date", {past: $H0, futur: $H3, to_normalise: false}]
+    time_step: none

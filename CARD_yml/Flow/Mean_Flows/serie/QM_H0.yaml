@@ -1,0 +1,31 @@
+id: QM_H0
+version: "1.0"
+authors: []
+date: "2026-04-30"
+
+meta:
+  en:
+    variable: QM_H0
+    unit: "m^{3}.s^{-1}"
+    name: Mean monthly discharge of historical period
+    description: ""
+    method: ""
+    topic: "Flow, Mean Flows, Intensity"
+
+  fr:
+    variable: QM_H0
+    unit: "m^{3}.s^{-1}"
+    name: Débit moyen mensuel de la période historique
+    description: ""
+    method: ""
+    topic: "Débit, Moyennes Eaux, Intensité"
+
+  global:
+    input_vars: Q
+
+process:
+  P1:
+    funct:
+      QM_H0: [mean, "Q", {skipna: true}]
+    period: ["1976-01-01", "2005-08-31"]
+    time_step: month

@@ -1,0 +1,80 @@
+id: dtLF
+version: "1.0"
+authors: []
+date: "2026-04-26"
+
+meta:
+  en:
+    variable: dtLF
+    unit: day
+    name: Duration of low flows
+    description: >-
+      Duration of the longest continuous sequence with 10-day mean flows
+      below the threshold set at the maximum of VCN10
+    method: |
+      1. no temporal aggregation - 10-day centered moving average
+      2. annual aggregation [Month of maximum monthly flows] - minimum
+         (extraction from the series of VCN10)
+      3. no temporal aggregation - the maximum of the previous series
+         is taken as the threshold
+      4. annual aggregation [Month of maximum monthly flows] - number of
+         days in the longest period below the previous threshold
+    sampling_period: Month of maximum monthly flows
+    topic: "Flow, Low Flows, Duration"
+
+  fr:
+    variable: dtBE
+    unit: jour
+    name: Durée des basses eaux
+    description: >-
+      Durée de la plus longue séquence continue avec des débits moyens
+      sur 10 jours sous le seuil fixé au maximum des VCN10
+    method: |
+      1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+      2. agrégation annuelle [Mois du maximum des débits mensuels] - minimum
+         (extraction de la série des VCN10)
+      3. aucune agrégation temporelle - le maximum de la précédente série
+         est pris comme seuil
+      4. agrégation annuelle [Mois du maximum des débits mensuels] - nombre
+         de jours de la plus longue période sous le précédent seuil
+    sampling_period: Mois du maximum des débits mensuels
+    topic: "Débit, Basses Eaux, Durée"
+
+  global:
+    input_vars: Q
+    preferred_sampling_period: "01-01"
+    to_normalise: false
+    palette: ["#003C30", "#01665E", "#35978F", "#80CDC1", "#C7EAE5",
+              "#F6E8C3", "#DFC27D", "#BF812D", "#8C510A", "#543005"]
+
+process:
+  P1:
+    funct:
+      VC10: [rollmean_center, "Q", {k: 10}]
+    time_step: none
+    keep: all
+
+  P2:
+    funct:
+      VCN10: [minNA, "VC10", {skipna: true}]
+    sampling_period:
+      type: adaptive
+      funct: [max, "Q", {skipna: true}]
+    NApct_lim: 3
+    NAyear_lim: 10
+    keep: all
+
+  P3:
+    funct:
+      upLim: [maxNA, "VCN10", {skipna: true}]
+    time_step: none
+    keep: all
+
+  P4:
+    funct:
+      dtLF: [apply_threshold, "VC10",
+             {lim: upLim, where: "<=", what: length, select: longest}]
+    sampling_period:
+      type: adaptive
+      funct: [max, "Q", {skipna: true}]
+    NApct_lim: 3

@@ -1,0 +1,378 @@
+id: delta-allLF_summer_H
+version: "1.0"
+authors: []
+date: "2026-04-30"
+
+meta:
+  en:
+    variable: [delta-startLF_summer_H1, delta-startLF_summer_H2, delta-startLF_summer_H3,
+               delta-centerLF_summer_H1, delta-centerLF_summer_H2, delta-centerLF_summer_H3,
+               delta-endLF_summer_H1, delta-endLF_summer_H2, delta-endLF_summer_H3,
+               delta-dtLF_summer_H1, delta-dtLF_summer_H2, delta-dtLF_summer_H3,
+               delta-vLF_summer_H1, delta-vLF_summer_H2, delta-vLF_summer_H3]
+    unit: [day, day, day, day, day, day, day, day, day, day, day, day, "%", "%", "%"]
+    name:
+      - Average change of the start of summer low flows between the near horizon and historical period
+      - Average change of the start of summer low flows between the middle horizon and historical period
+      - Average change of the start of summer low flows between the distant horizon and historical period
+      - Average change of the center of summer low flows between the near horizon and historical period
+      - Average change of the center of summer low flows between the middle horizon and historical period
+      - Average change of the center of summer low flows between the distant horizon and historical period
+      - Average change of the end of summer low flows between the near horizon and historical period
+      - Average change of the end of summer low flows between the middle horizon and historical period
+      - Average change of the end of summer low flows between the distant horizon and historical period
+      - Average change of duration of summer low flows between the near horizon and historical period
+      - Average change of duration of summer low flows between the middle horizon and historical period
+      - Average change of duration of summer low flows between the distant horizon and historical period
+      - Average change of summer low flow deficit volume between the near horizon and historical period
+      - Average change of summer low flow deficit volume between the middle horizon and historical period
+      - Average change of summer low flow deficit volume between the distant horizon and historical period
+    description:
+      - "In summer, date of the first 10-day mean flow value below the threshold set at the maximum of VCN10 (May to November)"
+      - "In summer, date of the first 10-day mean flow value below the threshold set at the maximum of VCN10 (May to November)"
+      - "In summer, date of the first 10-day mean flow value below the threshold set at the maximum of VCN10 (May to November)"
+      - "In summer, date of the minimal 10-day mean flow value below the threshold set at the maximum of VCN10 (May to November)"
+      - "In summer, date of the minimal 10-day mean flow value below the threshold set at the maximum of VCN10 (May to November)"
+      - "In summer, date of the minimal 10-day mean flow value below the threshold set at the maximum of VCN10 (May to November)"
+      - "In summer, date of the last 10-day mean flow value below the threshold set at the maximum of VCN10 (May to November)"
+      - "In summer, date of the last 10-day mean flow value below the threshold set at the maximum of VCN10 (May to November)"
+      - "In summer, date of the last 10-day mean flow value below the threshold set at the maximum of VCN10 (May to November)"
+      - "In summer, duration of the longest continuous sequence with 10-day mean flows below the threshold set at the maximum of VCN10 (May to November)"
+      - "In summer, duration of the longest continuous sequence with 10-day mean flows below the threshold set at the maximum of VCN10 (May to November)"
+      - "In summer, duration of the longest continuous sequence with 10-day mean flows below the threshold set at the maximum of VCN10 (May to November)"
+      - "In summer, sum of differences between the 10-day mean and the maximum of VCN10, over the longest sequence below this threshold (May to November)"
+      - "In summer, sum of differences between the 10-day mean and the maximum of VCN10, over the longest sequence below this threshold (May to November)"
+      - "In summer, sum of differences between the 10-day mean and the maximum of VCN10, over the longest sequence below this threshold (May to November)"
+    method:
+      - |
+        1. no temporal aggregation - 10-day centered moving average
+        2. annual aggregation [05-01, 11-30] - minimum (series of VCN10)
+        3. no temporal aggregation - the maximum of the previous series is taken as the threshold
+        4. annual aggregation [05-01, 11-30] - date of the first day of the longest period below the previous threshold
+        5. no temporal aggregation - calculation of the average change between the historical period and the near horizon
+      - |
+        1. no temporal aggregation - 10-day centered moving average
+        2. annual aggregation [05-01, 11-30] - minimum (series of VCN10)
+        3. no temporal aggregation - the maximum of the previous series is taken as the threshold
+        4. annual aggregation [05-01, 11-30] - date of the first day of the longest period below the previous threshold
+        5. no temporal aggregation - calculation of the average change between the historical period and the middle horizon
+      - |
+        1. no temporal aggregation - 10-day centered moving average
+        2. annual aggregation [05-01, 11-30] - minimum (series of VCN10)
+        3. no temporal aggregation - the maximum of the previous series is taken as the threshold
+        4. annual aggregation [05-01, 11-30] - date of the first day of the longest period below the previous threshold
+        5. no temporal aggregation - calculation of the average change between the historical period and the distant horizon
+      - |
+        1. no temporal aggregation - 10-day centered moving average (series of VC10)
+        2. annual aggregation [05-01, 11-30] - minimum (series of VCN10)
+        3. no temporal aggregation - the maximum of the previous series is taken as the threshold
+        4. annual aggregation [05-01, 11-30] - date of the minimum of the VC10 of the longest period below the previous threshold
+        5. no temporal aggregation - calculation of the average change between the historical period and the near horizon
+      - |
+        1. no temporal aggregation - 10-day centered moving average (series of VC10)
+        2. annual aggregation [05-01, 11-30] - minimum (series of VCN10)
+        3. no temporal aggregation - the maximum of the previous series is taken as the threshold
+        4. annual aggregation [05-01, 11-30] - date of the minimum of the VC10 of the longest period below the previous threshold
+        5. no temporal aggregation - calculation of the average change between the historical period and the middle horizon
+      - |
+        1. no temporal aggregation - 10-day centered moving average (series of VC10)
+        2. annual aggregation [05-01, 11-30] - minimum (series of VCN10)
+        3. no temporal aggregation - the maximum of the previous series is taken as the threshold
+        4. annual aggregation [05-01, 11-30] - date of the minimum of the VC10 of the longest period below the previous threshold
+        5. no temporal aggregation - calculation of the average change between the historical period and the distant horizon
+      - |
+        1. no temporal aggregation - 10-day centered moving average
+        2. annual aggregation [05-01, 11-30] - minimum
+        3. no temporal aggregation - the maximum of the previous series is taken as the threshold
+        4. annual aggregation [05-01, 11-30] - date of the last day of the longest period below the previous threshold
+        5. no temporal aggregation - calculation of the average change between the historical period and the near horizon
+      - |
+        1. no temporal aggregation - 10-day centered moving average
+        2. annual aggregation [05-01, 11-30] - minimum
+        3. no temporal aggregation - the maximum of the previous series is taken as the threshold
+        4. annual aggregation [05-01, 11-30] - date of the last day of the longest period below the previous threshold
+        5. no temporal aggregation - calculation of the average change between the historical period and the middle horizon
+      - |
+        1. no temporal aggregation - 10-day centered moving average
+        2. annual aggregation [05-01, 11-30] - minimum
+        3. no temporal aggregation - the maximum of the previous series is taken as the threshold
+        4. annual aggregation [05-01, 11-30] - date of the last day of the longest period below the previous threshold
+        5. no temporal aggregation - calculation of the average change between the historical period and the distant horizon
+      - |
+        1. no temporal aggregation - 10-day centered moving average
+        2. annual aggregation [05-01, 11-30] - minimum (extraction from the series of VCN10)
+        3. no temporal aggregation - the maximum of the previous series is taken as the threshold
+        4. annual aggregation [05-01, 11-30] - number of days in the longest period below the previous threshold
+        5. no temporal aggregation - calculation of the average change between the historical period and the near horizon
+      - |
+        1. no temporal aggregation - 10-day centered moving average
+        2. annual aggregation [05-01, 11-30] - minimum (extraction from the series of VCN10)
+        3. no temporal aggregation - the maximum of the previous series is taken as the threshold
+        4. annual aggregation [05-01, 11-30] - number of days in the longest period below the previous threshold
+        5. no temporal aggregation - calculation of the average change between the historical period and the middle horizon
+      - |
+        1. no temporal aggregation - 10-day centered moving average
+        2. annual aggregation [05-01, 11-30] - minimum (extraction from the series of VCN10)
+        3. no temporal aggregation - the maximum of the previous series is taken as the threshold
+        4. annual aggregation [05-01, 11-30] - number of days in the longest period below the previous threshold
+        5. no temporal aggregation - calculation of the average change between the historical period and the distant horizon
+      - |
+        1. no temporal aggregation - 10-day centered moving average
+        2. annual aggregation [05-01, 11-30] - minimum (extraction from the series of VCN10)
+        3. no temporal aggregation - the maximum of the previous series is taken as the threshold
+        4. annual aggregation [05-01, 11-30] - sum of volumes discharged each day in the longest period below the previous threshold
+        5. no temporal aggregation - calculation of the average change between the historical period and the near horizon
+      - |
+        1. no temporal aggregation - 10-day centered moving average
+        2. annual aggregation [05-01, 11-30] - minimum (extraction from the series of VCN10)
+        3. no temporal aggregation - the maximum of the previous series is taken as the threshold
+        4. annual aggregation [05-01, 11-30] - sum of volumes discharged each day in the longest period below the previous threshold
+        5. no temporal aggregation - calculation of the average change between the historical period and the middle horizon
+      - |
+        1. no temporal aggregation - 10-day centered moving average
+        2. annual aggregation [05-01, 11-30] - minimum (extraction from the series of VCN10)
+        3. no temporal aggregation - the maximum of the previous series is taken as the threshold
+        4. annual aggregation [05-01, 11-30] - sum of volumes discharged each day in the longest period below the previous threshold
+        5. no temporal aggregation - calculation of the average change between the historical period and the distant horizon
+    sampling_period: ["05-01", "11-30"]
+    topic:
+      - "Flow, Low Flows, Seasonality"
+      - "Flow, Low Flows, Seasonality"
+      - "Flow, Low Flows, Seasonality"
+      - "Flow, Low Flows, Seasonality"
+      - "Flow, Low Flows, Seasonality"
+      - "Flow, Low Flows, Seasonality"
+      - "Flow, Low Flows, Seasonality"
+      - "Flow, Low Flows, Seasonality"
+      - "Flow, Low Flows, Seasonality"
+      - "Flow, Low Flows, Duration"
+      - "Flow, Low Flows, Duration"
+      - "Flow, Low Flows, Duration"
+      - "Flow, Low Flows, Intensity"
+      - "Flow, Low Flows, Intensity"
+      - "Flow, Low Flows, Intensity"
+
+  fr:
+    variable: [delta-debutBE_été_H1, delta-debutBE_été_H2, delta-debutBE_été_H3,
+               delta-centreBE_été_H1, delta-centreBE_été_H2, delta-centreBE_été_H3,
+               delta-finBE_été_H1, delta-finBE_été_H2, delta-finBE_été_H3,
+               delta-dtBE_été_H1, delta-dtBE_été_H2, delta-dtBE_été_H3,
+               delta-vBE_été_H1, delta-vBE_été_H2, delta-vBE_été_H3]
+    unit: [jour, jour, jour, jour, jour, jour, jour, jour, jour, jour, jour, jour, "%", "%", "%"]
+    name:
+      - "Changement moyen du début des basses eaux estivales entre l'horizon proche et la période historique"
+      - "Changement moyen du début des basses eaux estivales entre l'horizon moyen et la période historique"
+      - "Changement moyen du début des basses eaux estivales entre l'horizon lointain et la période historique"
+      - "Changement moyen du centre des basses eaux estivales entre l'horizon proche et la période historique"
+      - "Changement moyen du centre des basses eaux estivales entre l'horizon moyen et la période historique"
+      - "Changement moyen du centre des basses eaux estivales entre l'horizon lointain et la période historique"
+      - "Changement moyen de la fin des basses eaux estivales entre l'horizon proche et la période historique"
+      - "Changement moyen de la fin des basses eaux estivales entre l'horizon moyen et la période historique"
+      - "Changement moyen de la fin des basses eaux estivales entre l'horizon lointain et la période historique"
+      - "Changement moyen de la durée des basses eaux estivales entre l'horizon proche et la période historique"
+      - "Changement moyen de la durée des basses eaux estivales entre l'horizon moyen et la période historique"
+      - "Changement moyen de la durée des basses eaux estivales entre l'horizon lointain et la période historique"
+      - "Changement moyen du volume de déficit des basses eaux estivales entre l'horizon proche et la période historique"
+      - "Changement moyen du volume de déficit des basses eaux estivales entre l'horizon moyen et la période historique"
+      - "Changement moyen du volume de déficit des basses eaux estivales entre l'horizon lointain et la période historique"
+    description:
+      - "En été, date de la première valeur de débits moyens sur 10 jours sous le seuil fixé au maximum des VCN10 (mois de mai à novembre)"
+      - "En été, date de la première valeur de débits moyens sur 10 jours sous le seuil fixé au maximum des VCN10 (mois de mai à novembre)"
+      - "En été, date de la première valeur de débits moyens sur 10 jours sous le seuil fixé au maximum des VCN10 (mois de mai à novembre)"
+      - "En été, date de la valeur minimale des débits moyens sur 10 jours sous le seuil fixé au maximum des VCN10 (mois de mai à novembre)"
+      - "En été, date de la valeur minimale des débits moyens sur 10 jours sous le seuil fixé au maximum des VCN10 (mois de mai à novembre)"
+      - "En été, date de la valeur minimale des débits moyens sur 10 jours sous le seuil fixé au maximum des VCN10 (mois de mai à novembre)"
+      - "En été, date de la dernière valeur de débits moyens sur 10 jours sous le seuil fixé au maximum des VCN10 (mois de mai à novembre)"
+      - "En été, date de la dernière valeur de débits moyens sur 10 jours sous le seuil fixé au maximum des VCN10 (mois de mai à novembre)"
+      - "En été, date de la dernière valeur de débits moyens sur 10 jours sous le seuil fixé au maximum des VCN10 (mois de mai à novembre)"
+      - "En été, durée de la plus longue séquence continue avec des débits moyens sur 10 jours sous le seuil fixé au maximum des VCN10 (mois de mai à novembre)"
+      - "En été, durée de la plus longue séquence continue avec des débits moyens sur 10 jours sous le seuil fixé au maximum des VCN10 (mois de mai à novembre)"
+      - "En été, durée de la plus longue séquence continue avec des débits moyens sur 10 jours sous le seuil fixé au maximum des VCN10 (mois de mai à novembre)"
+      - "En été, somme des écarts entre la moyenne sur 10 jours et le maximum des VCN10, sur la séquence la plus longue sous ce seuil (mois de mai à novembre)"
+      - "En été, somme des écarts entre la moyenne sur 10 jours et le maximum des VCN10, sur la séquence la plus longue sous ce seuil (mois de mai à novembre)"
+      - "En été, somme des écarts entre la moyenne sur 10 jours et le maximum des VCN10, sur la séquence la plus longue sous ce seuil (mois de mai à novembre)"
+    method:
+      - |
+        1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+        2. agrégation annuelle [01-05, 30-11] - minimum (série des VCN10)
+        3. aucune agrégation temporelle - le maximum de la précédente série est pris comme seuil
+        4. agrégation annuelle [01-05, 30-11] - date du premier jour de la plus longue période sous le précédent seuil
+        5. aucune agrégation temporelle - calcul du changement moyen entre la période historique et l'horizon proche
+      - |
+        1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+        2. agrégation annuelle [01-05, 30-11] - minimum (série des VCN10)
+        3. aucune agrégation temporelle - le maximum de la précédente série est pris comme seuil
+        4. agrégation annuelle [01-05, 30-11] - date du premier jour de la plus longue période sous le précédent seuil
+        5. aucune agrégation temporelle - calcul du changement moyen entre la période historique et l'horizon moyen
+      - |
+        1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+        2. agrégation annuelle [01-05, 30-11] - minimum (série des VCN10)
+        3. aucune agrégation temporelle - le maximum de la précédente série est pris comme seuil
+        4. agrégation annuelle [01-05, 30-11] - date du premier jour de la plus longue période sous le précédent seuil
+        5. aucune agrégation temporelle - calcul du changement moyen entre la période historique et l'horizon lointain
+      - |
+        1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours (série des VC10)
+        2. agrégation annuelle [01-05, 30-11] - minimum (série des VCN10)
+        3. aucune agrégation temporelle - le maximum de la précédente série est pris comme seuil
+        4. agrégation annuelle [01-05, 30-11] - date du minimum des VC10 de la plus longue période sous le précédent seuil
+        5. aucune agrégation temporelle - calcul du changement moyen entre la période historique et l'horizon proche
+      - |
+        1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours (série des VC10)
+        2. agrégation annuelle [01-05, 30-11] - minimum (série des VCN10)
+        3. aucune agrégation temporelle - le maximum de la précédente série est pris comme seuil
+        4. agrégation annuelle [01-05, 30-11] - date du minimum des VC10 de la plus longue période sous le précédent seuil
+        5. aucune agrégation temporelle - calcul du changement moyen entre la période historique et l'horizon moyen
+      - |
+        1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours (série des VC10)
+        2. agrégation annuelle [01-05, 30-11] - minimum (série des VCN10)
+        3. aucune agrégation temporelle - le maximum de la précédente série est pris comme seuil
+        4. agrégation annuelle [01-05, 30-11] - date du minimum des VC10 de la plus longue période sous le précédent seuil
+        5. aucune agrégation temporelle - calcul du changement moyen entre la période historique et l'horizon lointain
+      - |
+        1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+        2. agrégation annuelle [01-05, 30-11] - minimum
+        3. aucune agrégation temporelle - le maximum de la précédente série est pris comme seuil
+        4. agrégation annuelle [01-05, 30-11] - date du dernier jour de la plus longue période sous le précédent seuil
+        5. aucune agrégation temporelle - calcul du changement moyen entre la période historique et l'horizon proche
+      - |
+        1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+        2. agrégation annuelle [01-05, 30-11] - minimum
+        3. aucune agrégation temporelle - le maximum de la précédente série est pris comme seuil
+        4. agrégation annuelle [01-05, 30-11] - date du dernier jour de la plus longue période sous le précédent seuil
+        5. aucune agrégation temporelle - calcul du changement moyen entre la période historique et l'horizon moyen
+      - |
+        1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+        2. agrégation annuelle [01-05, 30-11] - minimum
+        3. aucune agrégation temporelle - le maximum de la précédente série est pris comme seuil
+        4. agrégation annuelle [01-05, 30-11] - date du dernier jour de la plus longue période sous le précédent seuil
+        5. aucune agrégation temporelle - calcul du changement moyen entre la période historique et l'horizon lointain
+      - |
+        1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+        2. agrégation annuelle [01-05, 30-11] - minimum (extraction de la série des VCN10)
+        3. aucune agrégation temporelle - le maximum de la précédente série est pris comme seuil
+        4. agrégation annuelle [01-05, 30-11] - nombre de jours de la plus longue période sous le précédent seuil
+        5. aucune agrégation temporelle - calcul du changement moyen entre la période historique et l'horizon proche
+      - |
+        1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+        2. agrégation annuelle [01-05, 30-11] - minimum (extraction de la série des VCN10)
+        3. aucune agrégation temporelle - le maximum de la précédente série est pris comme seuil
+        4. agrégation annuelle [01-05, 30-11] - nombre de jours de la plus longue période sous le précédent seuil
+        5. aucune agrégation temporelle - calcul du changement moyen entre la période historique et l'horizon moyen
+      - |
+        1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+        2. agrégation annuelle [01-05, 30-11] - minimum (extraction de la série des VCN10)
+        3. aucune agrégation temporelle - le maximum de la précédente série est pris comme seuil
+        4. agrégation annuelle [01-05, 30-11] - nombre de jours de la plus longue période sous le précédent seuil
+        5. aucune agrégation temporelle - calcul du changement moyen entre la période historique et l'horizon lointain
+      - |
+        1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+        2. agrégation annuelle [01-05, 30-11] - minimum (extraction de la série des VCN10)
+        3. aucune agrégation temporelle - le maximum de la précédente série est pris comme seuil
+        4. agrégation annuelle [01-05, 30-11] - somme des volumes écoulés chaque jour de la plus longue période sous le précédent seuil
+        5. aucune agrégation temporelle - calcul du changement moyen entre la période historique et l'horizon proche
+      - |
+        1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+        2. agrégation annuelle [01-05, 30-11] - minimum (extraction de la série des VCN10)
+        3. aucune agrégation temporelle - le maximum de la précédente série est pris comme seuil
+        4. agrégation annuelle [01-05, 30-11] - somme des volumes écoulés chaque jour de la plus longue période sous le précédent seuil
+        5. aucune agrégation temporelle - calcul du changement moyen entre la période historique et l'horizon moyen
+      - |
+        1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+        2. agrégation annuelle [01-05, 30-11] - minimum (extraction de la série des VCN10)
+        3. aucune agrégation temporelle - le maximum de la précédente série est pris comme seuil
+        4. agrégation annuelle [01-05, 30-11] - somme des volumes écoulés chaque jour de la plus longue période sous le précédent seuil
+        5. aucune agrégation temporelle - calcul du changement moyen entre la période historique et l'horizon lointain
+    sampling_period: ["01-05", "30-11"]
+    topic:
+      - "Débit, Basses Eaux, Saisonnalité"
+      - "Débit, Basses Eaux, Saisonnalité"
+      - "Débit, Basses Eaux, Saisonnalité"
+      - "Débit, Basses Eaux, Saisonnalité"
+      - "Débit, Basses Eaux, Saisonnalité"
+      - "Débit, Basses Eaux, Saisonnalité"
+      - "Débit, Basses Eaux, Saisonnalité"
+      - "Débit, Basses Eaux, Saisonnalité"
+      - "Débit, Basses Eaux, Saisonnalité"
+      - "Débit, Basses Eaux, Durée"
+      - "Débit, Basses Eaux, Durée"
+      - "Débit, Basses Eaux, Durée"
+      - "Débit, Basses Eaux, Intensité"
+      - "Débit, Basses Eaux, Intensité"
+      - "Débit, Basses Eaux, Intensité"
+
+  global:
+    input_vars: Q
+    preferred_sampling_period: "01-01"
+    is_date: [true, true, true, true, true, true, true, true, true, false, false, false, false, false, false]
+    to_normalise: [false, false, false, false, false, false, false, false, false, false, false, false, true, true, true]
+    horizons:
+      H0: ["1976-01-01", "2005-08-31"]
+      H1: ["2021-01-01", "2050-12-31"]
+      H2: ["2041-01-01", "2070-12-31"]
+      H3: ["2070-01-01", "2099-12-31"]
+    palette:
+      - ["#60265e", "#893687", "#c05fbe", "#dba3da", "#edd1ec", "#f6ddd3", "#edbaa7", "#e08765", "#CD5629", "#8f3c1d"]
+      - ["#60265e", "#893687", "#c05fbe", "#dba3da", "#edd1ec", "#f6ddd3", "#edbaa7", "#e08765", "#CD5629", "#8f3c1d"]
+      - ["#60265e", "#893687", "#c05fbe", "#dba3da", "#edd1ec", "#f6ddd3", "#edbaa7", "#e08765", "#CD5629", "#8f3c1d"]
+      - ["#60265e", "#893687", "#c05fbe", "#dba3da", "#edd1ec", "#f6ddd3", "#edbaa7", "#e08765", "#CD5629", "#8f3c1d"]
+      - ["#60265e", "#893687", "#c05fbe", "#dba3da", "#edd1ec", "#f6ddd3", "#edbaa7", "#e08765", "#CD5629", "#8f3c1d"]
+      - ["#60265e", "#893687", "#c05fbe", "#dba3da", "#edd1ec", "#f6ddd3", "#edbaa7", "#e08765", "#CD5629", "#8f3c1d"]
+      - ["#60265e", "#893687", "#c05fbe", "#dba3da", "#edd1ec", "#f6ddd3", "#edbaa7", "#e08765", "#CD5629", "#8f3c1d"]
+      - ["#60265e", "#893687", "#c05fbe", "#dba3da", "#edd1ec", "#f6ddd3", "#edbaa7", "#e08765", "#CD5629", "#8f3c1d"]
+      - ["#60265e", "#893687", "#c05fbe", "#dba3da", "#edd1ec", "#f6ddd3", "#edbaa7", "#e08765", "#CD5629", "#8f3c1d"]
+      - ["#003C30", "#01665E", "#35978F", "#80CDC1", "#C7EAE5", "#F6E8C3", "#DFC27D", "#BF812D", "#8C510A", "#543005"]
+      - ["#003C30", "#01665E", "#35978F", "#80CDC1", "#C7EAE5", "#F6E8C3", "#DFC27D", "#BF812D", "#8C510A", "#543005"]
+      - ["#003C30", "#01665E", "#35978F", "#80CDC1", "#C7EAE5", "#F6E8C3", "#DFC27D", "#BF812D", "#8C510A", "#543005"]
+      - ["#003C30", "#01665E", "#35978F", "#80CDC1", "#C7EAE5", "#F6E8C3", "#DFC27D", "#BF812D", "#8C510A", "#543005"]
+      - ["#003C30", "#01665E", "#35978F", "#80CDC1", "#C7EAE5", "#F6E8C3", "#DFC27D", "#BF812D", "#8C510A", "#543005"]
+      - ["#003C30", "#01665E", "#35978F", "#80CDC1", "#C7EAE5", "#F6E8C3", "#DFC27D", "#BF812D", "#8C510A", "#543005"]
+
+process:
+  P1:
+    funct:
+      VC10_summer: [rollmean_center, "Q", {k: 10}]
+    time_step: none
+    keep: all
+
+  P2:
+    funct:
+      VCN10_summer: [minNA, "VC10_summer", {skipna: true}]
+    sampling_period: ["05-01", "11-30"]
+    NApct_lim: 3
+    NAyear_lim: 10
+    keep: all
+
+  P3:
+    funct:
+      upLim: [maxNA, "VCN10_summer", {skipna: true}]
+    time_step: none
+    keep: all
+
+  P4:
+    funct:
+      startLF_summer:  [apply_threshold, "VC10_summer", {lim: upLim, where: "<=", what: first, select: longest}, true]
+      centerLF_summer: [apply_threshold, "VC10_summer", {lim: upLim, where: "<=", what: which.minNA, select: longest}, true]
+      endLF_summer:    [apply_threshold, "VC10_summer", {lim: upLim, where: "<=", what: last, select: longest}, true]
+      dtLF_summer:     [apply_threshold, "VC10_summer", {lim: upLim, where: "<=", what: length, select: longest}]
+      vLF_summer:      [compute_VolDef, "VC10_summer", {select: longest, upLim: upLim}]
+    sampling_period: ["05-01", "11-30"]
+    NApct_lim: 3
+
+  P5:
+    funct:
+      delta-startLF_summer_H1:  [get_deltaX, "startLF_summer", "date", {past: $H0, futur: $H1, to_normalise: false}]
+      delta-startLF_summer_H2:  [get_deltaX, "startLF_summer", "date", {past: $H0, futur: $H2, to_normalise: false}]
+      delta-startLF_summer_H3:  [get_deltaX, "startLF_summer", "date", {past: $H0, futur: $H3, to_normalise: false}]
+      delta-centerLF_summer_H1: [get_deltaX, "centerLF_summer", "date", {past: $H0, futur: $H1, to_normalise: false}]
+      delta-centerLF_summer_H2: [get_deltaX, "centerLF_summer", "date", {past: $H0, futur: $H2, to_normalise: false}]
+      delta-centerLF_summer_H3: [get_deltaX, "centerLF_summer", "date", {past: $H0, futur: $H3, to_normalise: false}]
+      delta-endLF_summer_H1:    [get_deltaX, "endLF_summer", "date", {past: $H0, futur: $H1, to_normalise: false}]
+      delta-endLF_summer_H2:    [get_deltaX, "endLF_summer", "date", {past: $H0, futur: $H2, to_normalise: false}]
+      delta-endLF_summer_H3:    [get_deltaX, "endLF_summer", "date", {past: $H0, futur: $H3, to_normalise: false}]
+      delta-dtLF_summer_H1:     [get_deltaX, "dtLF_summer", "date", {past: $H0, futur: $H1, to_normalise: false}]
+      delta-dtLF_summer_H2:     [get_deltaX, "dtLF_summer", "date", {past: $H0, futur: $H2, to_normalise: false}]
+      delta-dtLF_summer_H3:     [get_deltaX, "dtLF_summer", "date", {past: $H0, futur: $H3, to_normalise: false}]
+      delta-vLF_summer_H1:      [get_deltaX, "vLF_summer", "date", {past: $H0, futur: $H1, to_normalise: false}]
+      delta-vLF_summer_H2:      [get_deltaX, "vLF_summer", "date", {past: $H0, futur: $H2, to_normalise: false}]
+      delta-vLF_summer_H3:      [get_deltaX, "vLF_summer", "date", {past: $H0, futur: $H3, to_normalise: false}]
+    time_step: none

@@ -1,0 +1,69 @@
+id: delta-VCN10-5_H
+version: "1.0"
+authors: []
+date: "2026-04-28"
+
+meta:
+  en:
+    variable: [delta-VCN10-5_H1, delta-VCN10-5_H2, delta-VCN10-5_H3]
+    unit: "%"
+    name:
+      - Change of annual minimum of 10-day mean daily discharge with a return period of 5 years between the near horizon and historical period
+      - Change of annual minimum of 10-day mean daily discharge with a return period of 5 years between the middle horizon and historical period
+      - Change of annual minimum of 10-day mean daily discharge with a return period of 5 years between the distant horizon and historical period
+    description: ""
+    method: |
+      1. no temporal aggregation - 10-day centered moving average
+      2. annual aggregation [Month of maximum monthly flows] - minimum
+      3. no temporal aggregation - calculation of the 5-year return period flow with the log-normal distribution on the historical period and in the {horizon} horizon then calculation of the average change
+    horizon_labels: {H1: near, H2: middle, H3: distant}
+    sampling_period: Month of maximum monthly flows
+    topic: "Flow, Low Flows, Intensity"
+
+  fr:
+    variable: [delta-VCN10-5_H1, delta-VCN10-5_H2, delta-VCN10-5_H3]
+    unit: "%"
+    name:
+      - Changement du minimum annuel de la moyenne sur 10 jours du débit journalier VCN10 de période de retour 5 ans entre l'horizon proche et la période historique
+      - Changement du minimum annuel de la moyenne sur 10 jours du débit journalier VCN10 de période de retour 5 ans entre l'horizon moyen et la période historique
+      - Changement du minimum annuel de la moyenne sur 10 jours du débit journalier VCN10 de période de retour 5 ans entre l'horizon lointain et la période historique
+    description: ""
+    method: |
+      1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+      2. agrégation annuelle [Mois du maximum des débits mensuels] - minimum
+      3. aucune agrégation temporelle - calcul du débit de période de retour 5 ans avec la loi log-normal sur la période historique et en horizon {horizon} puis calcul du changement moyen
+    horizon_labels: {H1: proche, H2: moyen, H3: lointain}
+    sampling_period: Mois du maximum des débits mensuels
+    topic: "Débit, Basses Eaux, Intensité"
+
+  global:
+    input_vars: Q
+    preferred_sampling_period: "01-01"
+    horizons:
+      H0: ["1976-01-01", "2005-08-31"]
+      H1: ["2021-01-01", "2050-12-31"]
+      H2: ["2041-01-01", "2070-12-31"]
+      H3: ["2070-01-01", "2099-12-31"]
+
+process:
+  P1:
+    funct:
+      VC10: [rollmean_center, "Q", {k: 10}]
+    time_step: none
+    keep: all
+    NAyear_lim: 10
+
+  P2:
+    funct:
+      VCN10: [minNA, "VC10", {skipna: true}]
+    sampling_period:
+      type: adaptive
+      funct: [max, "Q", {skipna: true}]
+    NApct_lim: 3
+
+  P3:
+    funct:
+      delta-VCN10-5_H1: [get_deltaX, "VCN10", "date", {past: $H0, futur: $H1, to_normalise: true, returnPeriod: 5, waterType: "low"}]
+      delta-VCN10-5_H2: [get_deltaX, "VCN10", "date", {past: $H0, futur: $H2, to_normalise: true, returnPeriod: 5, waterType: "low"}]
+      delta-VCN10-5_H3: [get_deltaX, "VCN10", "date", {past: $H0, futur: $H3, to_normalise: true, returnPeriod: 5, waterType: "low"}]
+    time_step: none

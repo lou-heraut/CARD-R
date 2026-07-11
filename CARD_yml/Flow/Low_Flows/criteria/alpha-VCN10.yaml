@@ -1,0 +1,60 @@
+id: alpha-VCN10
+version: "1.0"
+authors: []
+date: "2026-04-28"
+
+meta:
+  en:
+    variable: [alpha-VCN10, hyp-alpha-VCN10]
+    unit: "m^{3}.s^{-1}.year^{-1}"
+    name: Sen's slope and Mann-Kendall test result calculated on the series of annual minima of 10-day mean flows (VCN10)
+    description: ""
+    method: |
+      1. no temporal aggregation - 10-day centered moving average
+      2. annual aggregation [Month of maximum monthly flows] - minimum
+      3. no temporal aggregation - Sen's slope
+    sampling_period: Month of maximum monthly flows
+    topic: "Flow, Low Flows, Intensity"
+
+  fr:
+    variable: [alpha-VCN10, hyp-alpha-VCN10]
+    unit: "m^{3}.s^{-1}.an^{-1}"
+    name: Pente de Sen et résultat du test de Mann-Kendall calculés sur la série des minimums annuels des débits moyens sur 10 jours VCN10
+    description: ""
+    method: |
+      1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+      2. agrégation annuelle [Mois du maximum des débits mensuels] - minimum
+      3. aucune agrégation temporelle - pente de Sen
+    sampling_period: Mois du maximum des débits mensuels
+    topic: "Débit, Basses Eaux, Intensité"
+
+  global:
+    input_vars: Q
+    preferred_sampling_period: "01-01"
+    to_normalise: [true, false]
+    source: |
+      KENDALL, M. G. (1975). « Rank Correlation Methods ». Griffin, London, UK.
+      MANN, H. (1945). « Nonparametric tests against trend ». Econometrica, 13(3):245–259.
+      SEN, P. K. (1968). « Estimates of the regression coefficient based on Kendall's tau ». In : Journal of the American Statistical Association 63, p. 1379-1389. DOI : doi:10.2307/2285891.
+
+process:
+  P1:
+    funct:
+      VC10: [rollmean_center, "Q", {k: 10}]
+    time_step: none
+    keep: all
+    NAyear_lim: 10
+
+  P2:
+    funct:
+      VCN10: [minNA, "VC10", {skipna: true}]
+    sampling_period:
+      type: adaptive
+      funct: [max, "Q", {skipna: true}]
+    NApct_lim: 3
+
+  P3:
+    funct:
+      alpha-VCN10: [get_MKalpha, "VCN10", {level: 0.1}]
+      hyp-alpha-VCN10: [get_MKH, "VCN10", {level: 0.1}]
+    time_step: none

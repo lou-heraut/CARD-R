@@ -49,7 +49,7 @@ CARD_list_all = function (include_experimental=FALSE) {
 
 
 #' @title CARD_management
-#' @description Manage your different sets of variables to extract. For CARD advanced users, this function manages the CARD directory structure by performing automatic file operations to get the CARD parameterization files to your wanted directory in order to custom them or create yours to use them in a second step with [CARD_extraction()]. If you want to submit request for new CARD see the [GitHub repo](https://github.com/super-lou/CARD)<https://github.com/super-lou/CARD>.
+#' @description Manage your different sets of variables to extract. For CARD advanced users, this function manages the CARD directory structure by performing automatic file operations to get the CARD parameterization files to your wanted directory in order to custom them or create yours to use them in a second step with [CARD_extraction()]. If you want to submit request for new CARD see the [GitHub repo](https://github.com/lou-heraut/CARD)<https://github.com/lou-heraut/CARD>.
 #' @param CARD_name A [vector][base::c()] of [character][base::character] strings to specify which variables you want to extract. See [CARD_list_all()] to get the variable names. By default, `c("QA", "QJXA")`. If `NULL`, all the variable will be extracted, so avoid this value except with `extract_only_metadata = TRUE`.
 #' @param CARD_path An optional [character][base::character] string for the path where to search for custom CARDs that have been created by the [CARD_management] function. By default, `NULL` in order to get the default CARD variable parameters.
 #' @param add_id [logical][base::logical]. If `TRUE`, numerical IDs will be added to the start of the copied and pasted CARD names to maintain the input order. Default is `TRUE`.
@@ -146,16 +146,6 @@ CARD_management = function (CARD_name=c("QA", "QJXA"),
     }
     manage_hide(CARD_name, CARD_path)
 }
-
-
-
-
-
-
-
-
-
-
 
 remind = function (args) {
     print("PARAMETERS:")

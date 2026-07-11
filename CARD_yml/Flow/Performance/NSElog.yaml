@@ -1,0 +1,40 @@
+id: NSElog
+version: "1.0"
+authors: []
+date: "2026-04-26"
+
+meta:
+  en:
+    variable: NSElog
+    unit: "without unit"
+    name: Nash-Sutcliffe Efficiency of the logarithm of the data
+    description: >-
+      Identical to NSE, this score, however, gives strong emphasis on the
+      reconstruction of low values of the examined variable.
+    method: "1. no temporal aggregation - logarithm of daily data, then NSE"
+    topic: "Flow, Performance"
+
+  fr:
+    variable: NSElog
+    unit: "sans unité"
+    name: Coefficient d'efficience de Nash-Sutcliffe du logarithme des données
+    description: >-
+      Identique au NSE, ce score donne cependant un poids fort à la
+      reconstitution des valeurs faibles de la variable examinée.
+    method: "1. aucune agrégation temporelle - logarithme des données journalières puis NSE"
+    topic: "Débit, Performance"
+
+  global:
+    input_vars: "Q_obs, Q_sim"
+    source: |
+      NASH, J. E. et J. V. SUTCLIFFE (1970). « River flow forecasting through conceptual models
+      part I — A discussion of principles ». In : Journal of Hydrology 10.3, p. 282-290.
+      DOI : 10.1016/0022-1694(70)90255-6.
+    to_normalise: false
+
+process:
+  P1:
+    funct:
+      NSElog: [compute_NSElog, "Q_obs", "Q_sim"]
+    time_step: none
+    NAyear_lim: 10

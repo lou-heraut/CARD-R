@@ -1,0 +1,33 @@
+id: BF-LH
+version: "1.0"
+authors: []
+date: "2026-04-26"
+
+meta:
+  en:
+    variable: BF-LH
+    unit: "m^{3}.s^{-1}"
+    name: Base flow (Lyne and Hollick)
+    description: ""
+    method: "1. no temporal aggregation - extraction of the base flow (Lyne and Hollick)"
+    topic: "Flow, Base Flow, Intensity"
+
+  fr:
+    variable: QB-LH
+    unit: "m^{3}.s^{-1}"
+    name: Débit de base (Lyne et Hollick)
+    description: ""
+    method: "1. aucune agrégation temporelle - extraction du débit de base (Lyne et Hollick)"
+    topic: "Débit, Débit de Base, Intensité"
+
+  global:
+    input_vars: Q
+    to_normalise: false
+
+process:
+  P1:
+    funct:
+      BF-LH: [BFS, "Q", {method: LH}]
+    time_step: none
+    keep: all
+    NAyear_lim: 10

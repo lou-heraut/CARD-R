@@ -1,0 +1,78 @@
+id: mean-TSA_season
+version: "1.0"
+authors: []
+date: "2026-04-26"
+
+meta:
+  en:
+    variable: [mean-TSA_DJF, mean-TSA_MAM, mean-TSA_JJA, mean-TSA_SON]
+    unit: "°C"
+    name:
+      - "Average temperatures of each winter (months of December, January and February)"
+      - "Average temperatures of each spring (months of March, April and May)"
+      - "Average temperatures of each summer (months of June, July and August)"
+      - "Average temperatures of each fall (months of September, October and November)"
+    description:
+      - ""
+      - ""
+      - ""
+      - ""
+    method:
+      - "1. seasonal annual aggregation [12-01, 02-28(29)] - average\n2. no temporal aggregation - average"
+      - "1. seasonal annual aggregation [03-01, 05-31] - average\n2. no temporal aggregation - average"
+      - "1. seasonal annual aggregation [06-01, 08-31] - average\n2. no temporal aggregation - average"
+      - "1. seasonal annual aggregation [09-01, 11-30] - average\n2. no temporal aggregation - average"
+    sampling_period:
+      - ["12-01", "02-28(29)"]
+      - ["03-01", "05-31"]
+      - ["06-01", "08-31"]
+      - ["09-01", "11-30"]
+    topic: "Temperature, Average, Intensity"
+
+  fr:
+    variable: [moyenne-TSA_DJF, moyenne-TSA_MAM, moyenne-TSA_JJA, moyenne-TSA_SON]
+    unit: "°C"
+    name:
+      - Moyenne des températures de chaque hiver
+      - Moyenne des températures de chaque printemps
+      - Moyenne des températures de chaque été
+      - Moyenne des températures de chaque automne
+    description:
+      - "Mois de décembre, janvier et février"
+      - "Mois de mars, avril et mai"
+      - "Mois de juin, juillet et août"
+      - "Mois de septembre, octobre et novembre"
+    method:
+      - "1. agrégation annuelle saisonnalisé [01-12, 28(29)-02] - moyenne\n2. aucune agrégation temporelle - moyenne"
+      - "1. agrégation annuelle saisonnalisé [01-03, 31-05] - moyenne\n2. aucune agrégation temporelle - moyenne"
+      - "1. agrégation annuelle saisonnalisé [01-06, 31-08] - moyenne\n2. aucune agrégation temporelle - moyenne"
+      - "1. agrégation annuelle saisonnalisé [01-09, 30-11] - moyenne\n2. aucune agrégation temporelle - moyenne"
+    sampling_period:
+      - ["01-12", "28(29)-02"]
+      - ["01-03", "31-05"]
+      - ["01-06", "31-08"]
+      - ["01-09", "30-11"]
+    topic: "Température, Moyenne, Intensité"
+
+  global:
+    input_vars: T
+    to_normalise: false
+    palette: ["#053061", "#2166AC", "#4393C3", "#92C5DE", "#D1E5F0",
+              "#FDDBC7", "#F4A582", "#D6604D", "#B2182B", "#67001F"]
+
+process:
+  P1:
+    funct:
+      TSA: [mean, "T", {skipna: true}]
+    time_step: year-season
+    Seasons: [DJF, MAM, JJA, SON]
+    NApct_lim: 3
+    NAyear_lim: 10
+    compress: true
+  P2:
+    funct:
+      mean-TSA_DJF: [mean, "TSA_DJF", {skipna: true}]
+      mean-TSA_MAM: [mean, "TSA_MAM", {skipna: true}]
+      mean-TSA_JJA: [mean, "TSA_JJA", {skipna: true}]
+      mean-TSA_SON: [mean, "TSA_SON", {skipna: true}]
+    time_step: none

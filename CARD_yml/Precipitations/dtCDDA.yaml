@@ -1,0 +1,37 @@
+id: dtCDDA
+version: "1.0"
+authors: []
+date: "2026-04-26"
+
+meta:
+  en:
+    variable: dtCDDA
+    unit: day
+    name: Maximum number of consecutive dry days in the year
+    description: "Maximum number of consecutive days in the year with less than 1 mm of precipitation"
+    method: ""
+    sampling_period: ["09-01", "08-31"]
+    topic: "Precipitations, Dry Period, Duration"
+
+  fr:
+    variable: dtCDDA
+    unit: jour
+    name: Nombre maximal de jours secs consécutifs dans l'année
+    description: "Nombre maximal de jours consécutifs dans l'année avec moins de 1 mm de précipitation"
+    method: ""
+    sampling_period: ["01-09", "31-08"]
+    topic: "Précipitations, Période sèche, Durée"
+
+  global:
+    input_vars: R
+    to_normalise: false
+    palette: ["#003C30", "#01665E", "#35978F", "#80CDC1", "#C7EAE5",
+              "#F6E8C3", "#DFC27D", "#BF812D", "#8C510A", "#543005"]
+
+process:
+  P1:
+    funct:
+      dtCDDA: [apply_threshold, "R", {lim: 1, where: "<", what: length, select: longest}]
+    sampling_period: "09-01"
+    NApct_lim: 3
+    NAyear_lim: 10

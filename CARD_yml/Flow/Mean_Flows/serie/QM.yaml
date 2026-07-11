@@ -1,0 +1,32 @@
+id: QM
+version: "1.0"
+authors: []
+date: "2026-04-30"
+
+meta:
+  en:
+    variable: QM
+    unit: "m^{3}.s^{-1}"
+    name: Mean monthly discharge
+    description: ""
+    method: ""
+    topic: "Flow, Mean Flows, Intensity"
+
+  fr:
+    variable: QM
+    unit: "m^{3}.s^{-1}"
+    name: Débit moyen mensuel
+    description: ""
+    method: ""
+    topic: "Débit, Moyennes Eaux, Intensité"
+
+  global:
+    input_vars: Q
+
+process:
+  P1:
+    funct:
+      QM: [mean, "Q", {skipna: true}]
+    time_step: month
+    NApct_lim: 3
+    NAyear_lim: 10

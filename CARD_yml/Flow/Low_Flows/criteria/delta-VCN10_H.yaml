@@ -1,0 +1,71 @@
+id: delta-VCN10_H
+version: "1.0"
+authors: []
+date: "2026-04-28"
+
+meta:
+  en:
+    variable: [delta-VCN10_H1, delta-VCN10_H2, delta-VCN10_H3]
+    unit: "%"
+    name:
+      - Average change of annual minimum of 10-day mean daily discharge between the near horizon and historical period
+      - Average change of annual minimum of 10-day mean daily discharge between the middle horizon and historical period
+      - Average change of annual minimum of 10-day mean daily discharge between the distant horizon and historical period
+    description: ""
+    method: |
+      1. no temporal aggregation - 10-day centered moving average
+      2. annual aggregation [Month of maximum monthly flows] - minimum
+      3. no temporal aggregation - calculation of the average change between the historical period and the {horizon} horizon
+    horizon_labels: {H1: near, H2: middle, H3: distant}
+    sampling_period: Month of maximum monthly flows
+    topic: "Flow, Low Flows, Intensity"
+
+  fr:
+    variable: [delta-VCN10_H1, delta-VCN10_H2, delta-VCN10_H3]
+    unit: "%"
+    name:
+      - Changement moyen du minimum annuel de la moyenne sur 10 jours du débit journalier entre l'horizon proche et la période historique
+      - Changement moyen du minimum annuel de la moyenne sur 10 jours du débit journalier entre l'horizon moyen et la période historique
+      - Changement moyen du minimum annuel de la moyenne sur 10 jours du débit journalier entre l'horizon lointain et la période historique
+    description: ""
+    method: |
+      1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+      2. agrégation annuelle [Mois du maximum des débits mensuels] - minimum
+      3. aucune agrégation temporelle - calcul du changement moyen entre la période historique et l'horizon {horizon}
+    horizon_labels: {H1: proche, H2: moyen, H3: lointain}
+    sampling_period: Mois du maximum des débits mensuels
+    topic: "Débit, Basses Eaux, Intensité"
+
+  global:
+    input_vars: Q
+    preferred_sampling_period: "01-01"
+    palette: ["#452C1A", "#7F4A23", "#B3762A", "#D4B86A", "#EFE0B0",
+              "#BCE6DB", "#7ACEB9", "#449C93", "#2A6863", "#193830"]
+    horizons:
+      H0: ["1976-01-01", "2005-08-31"]
+      H1: ["2021-01-01", "2050-12-31"]
+      H2: ["2041-01-01", "2070-12-31"]
+      H3: ["2070-01-01", "2099-12-31"]
+
+process:
+  P1:
+    funct:
+      VC10: [rollmean_center, "Q", {k: 10}]
+    time_step: none
+    keep: all
+    NAyear_lim: 10
+
+  P2:
+    funct:
+      VCN10: [minNA, "VC10", {skipna: true}]
+    sampling_period:
+      type: adaptive
+      funct: [max, "Q", {skipna: true}]
+    NApct_lim: 3
+
+  P3:
+    funct:
+      delta-VCN10_H1: [get_deltaX, "VCN10", "date", {past: $H0, futur: $H1, to_normalise: true}]
+      delta-VCN10_H2: [get_deltaX, "VCN10", "date", {past: $H0, futur: $H2, to_normalise: true}]
+      delta-VCN10_H3: [get_deltaX, "VCN10", "date", {past: $H0, futur: $H3, to_normalise: true}]
+    time_step: none

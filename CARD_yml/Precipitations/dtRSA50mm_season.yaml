@@ -1,0 +1,63 @@
+id: dtRSA50mm_season
+version: "1.0"
+authors: []
+date: "2026-04-26"
+
+meta:
+  en:
+    variable: [dtRSA50mm_DJF, dtRSA50mm_MAM, dtRSA50mm_JJA, dtRSA50mm_SON]
+    unit: day
+    name:
+      - Number of extreme rain days in winter
+      - Number of extreme rain days in spring
+      - Number of extreme rain days in summer
+      - Number of extreme rain days in autumn
+    description:
+      - "Number of days with at least 50 mm of precipitation (months of December, January, and February)"
+      - "Number of days with at least 50 mm of precipitation (months of March, April, and May)"
+      - "Number of days with at least 50 mm of precipitation (months of June, July, and August)"
+      - "Number of days with at least 50 mm of precipitation (months of September, October, and November)"
+    method: ""
+    sampling_period:
+      - ["12-01", "02-28(29)"]
+      - ["03-01", "05-31"]
+      - ["06-01", "08-31"]
+      - ["09-01", "11-30"]
+    topic: "Precipitations, Heavy, Duration"
+
+  fr:
+    variable: [dtRSA50mm_DJF, dtRSA50mm_MAM, dtRSA50mm_JJA, dtRSA50mm_SON]
+    unit: jour
+    name:
+      - Nombre de jours de pluie extrême en hiver
+      - Nombre de jours de pluie extrême au printemps
+      - Nombre de jours de pluie extrême en été
+      - Nombre de jours de pluie extrême en automne
+    description:
+      - "Nombre de jours dans l'hiver avec au moins 50 mm de précipitations (mois de décembre, janvier et février)"
+      - "Nombre de jours au printemps avec au moins 50 mm de précipitations (mois de mars, avril et mai)"
+      - "Nombre de jours en été avec au moins 50 mm de précipitations (mois de juin, juillet et août)"
+      - "Nombre de jours en automne avec au moins 50 mm de précipitations (mois de septembre, octobre et novembre)"
+    method: ""
+    sampling_period:
+      - ["01-12", "28(29)-02"]
+      - ["01-03", "31-05"]
+      - ["01-06", "31-08"]
+      - ["01-09", "30-11"]
+    topic: "Précipitations, Forte, Durée"
+
+  global:
+    input_vars: R
+    to_normalise: false
+    palette: ["#452C1A", "#7F4A23", "#B3762A", "#D4B86A", "#EFE0B0",
+              "#BCE6DB", "#7ACEB9", "#449C93", "#2A6863", "#193830"]
+
+process:
+  P1:
+    funct:
+      dtRSA50mm: [apply_threshold, "R", {lim: 50, where: ">=", what: length, select: all}]
+    time_step: year-season
+    Seasons: [DJF, MAM, JJA, SON]
+    NApct_lim: 3
+    NAyear_lim: 10
+    compress: true

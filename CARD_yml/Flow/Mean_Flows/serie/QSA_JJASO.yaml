@@ -1,0 +1,36 @@
+id: QSA_JJASO
+version: "1.0"
+authors: []
+date: "2026-04-30"
+
+meta:
+  en:
+    variable: QSA_JJASO
+    unit: "m^{3}.s^{-1}"
+    name: Seasonal annual mean daily discharge
+    description: ""
+    method: "1. annual aggregation [06-01, 10-31] - mean"
+    sampling_period: ["06-01", "10-31"]
+    topic: "Flow, Mean Flows, Intensity"
+
+  fr:
+    variable: QSA_JJASO
+    unit: "m^{3}.s^{-1}"
+    name: Moyenne saisonnière annuelle du débit journalier
+    description: ""
+    method: "1. agrégation annuelle [01-06, 31-10] - moyenne"
+    sampling_period: ["01-06", "31-10"]
+    topic: "Débit, Moyennes Eaux, Intensité"
+
+  global:
+    input_vars: Q
+    palette: ["#452C1A", "#7F4A23", "#B3762A", "#D4B86A", "#EFE0B0",
+              "#BCE6DB", "#7ACEB9", "#449C93", "#2A6863", "#193830"]
+
+process:
+  P1:
+    funct:
+      QSA_JJASO: [mean, "Q", {skipna: true}]
+    sampling_period: ["06-01", "10-31"]
+    NApct_lim: 3
+    NAyear_lim: 10

@@ -1,0 +1,92 @@
+id: n-QJXA-10_H
+version: "1.0"
+authors: []
+date: "2026-04-28"
+
+meta:
+  en:
+    variable: [n-QJXA-10_H1, n-QJXA-10_H2, n-QJXA-10_H3]
+    unit: "without unit"
+    name:
+      - "Number of years in the near horizon where QJXA is superior to
+         QJXA-10 from the historical period"
+      - "Number of years in the middle horizon where QJXA is superior to
+         QJXA-10 from the historical period"
+      - "Number of years in the distant horizon where QJXA is superior to
+         QJXA-10 from the historical period"
+    description: ""
+    method: |
+      1. annual aggregation [Month of minimum monthly flows] - maximum
+         (extraction from the QJXA series)
+      2. no temporal aggregation - calculation of the flow with a 10-year
+         return period using the Gumbel distribution from the historical
+         period (QJXA-10_H0)
+      3. no temporal aggregation - counting the number of QJXA in the
+         {horizon} horizon above QJXA-10_H0
+    horizon_labels: {H1: near, H2: middle, H3: distant}
+    sampling_period: Month of minimum monthly flows
+    topic: "Flow, High Flows, Occurrence"
+
+  fr:
+    variable: [n-QJXA-10_H1, n-QJXA-10_H2, n-QJXA-10_H3]
+    unit: "sans unité"
+    name:
+      - "Nombre d'années de l'horizon proche où le QJXA est supérieur au
+         QJXA-10 de la période historique"
+      - "Nombre d'années de l'horizon moyen où le QJXA est supérieur au
+         QJXA-10 de la période historique"
+      - "Nombre d'années de l'horizon lointain où le QJXA est supérieur au
+         QJXA-10 de la période historique"
+    description: ""
+    method: |
+      1. agrégation annuelle [Mois du minimum des débits mensuels] - maximum
+         (extraction de la série des QJXA)
+      2. aucune agrégation temporelle - calcul du débit de période de retour
+         10 ans avec la loi de Gumbel sur la période historique (QJXA-10_H0)
+      3. aucune agrégation temporelle - décompte du nombre de QJXA de
+         l'horizon {horizon} au dessus du QJXA-10_H0
+    horizon_labels: {H1: proche, H2: moyen, H3: lointain}
+    sampling_period: Mois du minimum des débits mensuels
+    topic: "Débit, Hautes Eaux, Occurrence"
+
+  global:
+    input_vars: Q
+    preferred_sampling_period: "09-01"
+    palette: ["#452C1A", "#7F4A23", "#B3762A", "#D4B86A", "#EFE0B0",
+              "#BCE6DB", "#7ACEB9", "#449C93", "#2A6863", "#193830"]
+    horizons:
+      H0: ["1976-01-01", "2005-08-31"]
+      H1: ["2021-01-01", "2050-12-31"]
+      H2: ["2041-01-01", "2070-12-31"]
+      H3: ["2070-01-01", "2099-12-31"]
+
+process:
+  P1:
+    funct:
+      QJXA: [maxNA, "Q", {skipna: true}]
+    sampling_period:
+      type: adaptive
+      funct: [min, "Q", {skipna: true}]
+    NApct_lim: 3
+    NAyear_lim: 10
+
+  P2:
+    funct:
+      QJXA-10_H0: [get_Xn, "QJXA",
+                   {returnPeriod: 10, waterType: "high", Date: "date",
+                    period: $H0}]
+    time_step: none
+    keep: all
+
+  P3:
+    funct:
+      n-QJXA-10_H1: [apply_threshold, "QJXA",
+                     {lim: QJXA-10_H0, where: ">=", what: length,
+                      select: all, Date: "date", period: $H1}]
+      n-QJXA-10_H2: [apply_threshold, "QJXA",
+                     {lim: QJXA-10_H0, where: ">=", what: length,
+                      select: all, Date: "date", period: $H2}]
+      n-QJXA-10_H3: [apply_threshold, "QJXA",
+                     {lim: QJXA-10_H0, where: ">=", what: length,
+                      select: all, Date: "date", period: $H3}]
+    time_step: none

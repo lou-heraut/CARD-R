@@ -1,0 +1,40 @@
+id: median-QJC5
+version: "1.0"
+authors: []
+date: "2026-04-26"
+
+meta:
+  en:
+    variable: median-QJC5
+    unit: "m^{3}.s^{-1}"
+    name: 5-day centered moving average of the inter-annual median flow
+    description: ""
+    method: |
+      1. aggregation by day of the year - median
+      2. no temporal aggregation - 5-day centered moving average
+    topic: "Flow, Mean Flows, Intensity"
+
+  fr:
+    variable: mediane-QJC5
+    unit: "m^{3}.s^{-1}"
+    name: Moyenne mobile sur 5 jours du débit médian inter-annuel
+    description: ""
+    method: |
+      1. agrégation par jour de l'année - médiane
+      2. aucune agrégation temporelle - moyenne mobile centrée sur 5 jours
+    topic: "Débit, Moyennes Eaux, Intensité"
+
+  global:
+    input_vars: Q
+
+process:
+  P1:
+    funct:
+      median-QJ: [median, "Q", {skipna: true}]
+    time_step: yearday
+
+  P2:
+    funct:
+      median-QJC5: [rollmean_center, "median-QJ", {k: 5, isCyclical: true}]
+    time_step: none
+    keep: all

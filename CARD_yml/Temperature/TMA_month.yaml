@@ -1,0 +1,110 @@
+id: TMA_month
+version: "1.0"
+authors: []
+date: "2026-04-26"
+
+meta:
+  en:
+    variable:
+      - TMA_jan
+      - TMA_feb
+      - TMA_mar
+      - TMA_apr
+      - TMA_may
+      - TMA_jun
+      - TMA_jul
+      - TMA_aug
+      - TMA_sep
+      - TMA_oct
+      - TMA_nov
+      - TMA_dec
+    unit: "°C"
+    name:
+      - Average daily temperatures for each January
+      - Average daily temperatures for each February
+      - Average daily temperatures for each March
+      - Average daily temperatures for each April
+      - Average daily temperatures for each May
+      - Average daily temperatures for each June
+      - Average daily temperatures for each July
+      - Average daily temperatures for each August
+      - Average daily temperatures for each September
+      - Average daily temperatures for each October
+      - Average daily temperatures for each November
+      - Average daily temperatures for each December
+    description: ""
+    method: ""
+    sampling_period:
+      - ["01-01", "01-31"]
+      - ["02-01", "02-28(29)"]
+      - ["03-01", "03-31"]
+      - ["04-01", "04-30"]
+      - ["05-01", "05-31"]
+      - ["06-01", "06-30"]
+      - ["07-01", "07-31"]
+      - ["08-01", "08-31"]
+      - ["09-01", "09-30"]
+      - ["10-01", "10-31"]
+      - ["11-01", "11-30"]
+      - ["12-01", "12-31"]
+    topic: "Temperature, Average, Intensity"
+
+  fr:
+    variable:
+      - TMA_janv
+      - TMA_fevr
+      - TMA_mars
+      - TMA_avril
+      - TMA_mai
+      - TMA_juin
+      - TMA_juil
+      - TMA_aout
+      - TMA_sept
+      - TMA_oct
+      - TMA_nov
+      - TMA_dec
+    unit: "°C"
+    name:
+      - Moyenne des températures journalières de chaque janvier
+      - Moyenne des températures journalières de chaque février
+      - Moyenne des températures journalières de chaque mars
+      - Moyenne des températures journalières de chaque avril
+      - Moyenne des températures journalières de chaque mai
+      - Moyenne des températures journalières de chaque juin
+      - Moyenne des températures journalières de chaque juillet
+      - Moyenne des températures journalières de chaque août
+      - Moyenne des températures journalières de chaque septembre
+      - Moyenne des températures journalières de chaque octobre
+      - Moyenne des températures journalières de chaque novembre
+      - Moyenne des températures journalières de chaque décembre
+    description: ""
+    method: ""
+    sampling_period:
+      - ["01-01", "31-01"]
+      - ["01-02", "28(29)-02"]
+      - ["01-03", "31-03"]
+      - ["01-04", "30-04"]
+      - ["01-05", "31-05"]
+      - ["01-06", "30-06"]
+      - ["01-07", "31-07"]
+      - ["01-08", "31-08"]
+      - ["01-09", "30-09"]
+      - ["01-10", "31-10"]
+      - ["01-11", "30-11"]
+      - ["01-12", "31-12"]
+    topic: "Température, Moyenne, Intensité"
+
+  global:
+    input_vars: T
+    to_normalise: false
+    palette: ["#053061", "#2166AC", "#4393C3", "#92C5DE", "#D1E5F0",
+              "#FDDBC7", "#F4A582", "#D6604D", "#B2182B", "#67001F"]
+
+process:
+  P1:
+    funct:
+      TMA: [mean, "T", {skipna: true}]
+    time_step: year-month
+    NApct_lim: 3
+    NAyear_lim: 10
+    compress: true

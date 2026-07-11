@@ -1,0 +1,134 @@
+id: dtCDDMA_month
+version: "1.0"
+authors: []
+date: "2026-04-26"
+
+meta:
+  en:
+    variable:
+      - dtCDDMA_jan
+      - dtCDDMA_feb
+      - dtCDDMA_mar
+      - dtCDDMA_apr
+      - dtCDDMA_may
+      - dtCDDMA_jun
+      - dtCDDMA_jul
+      - dtCDDMA_aug
+      - dtCDDMA_sep
+      - dtCDDMA_oct
+      - dtCDDMA_nov
+      - dtCDDMA_dec
+    unit: day
+    name:
+      - Maximum number of consecutive dry days in each January
+      - Maximum number of consecutive dry days in each February
+      - Maximum number of consecutive dry days in each March
+      - Maximum number of consecutive dry days in each April
+      - Maximum number of consecutive dry days in each May
+      - Maximum number of consecutive dry days in each June
+      - Maximum number of consecutive dry days in each July
+      - Maximum number of consecutive dry days in each August
+      - Maximum number of consecutive dry days in each September
+      - Maximum number of consecutive dry days in each October
+      - Maximum number of consecutive dry days in each November
+      - Maximum number of consecutive dry days in each December
+    description:
+      - "Maximum number of consecutive days with less than 1 mm of precipitation in each January"
+      - "Maximum number of consecutive days with less than 1 mm of precipitation in each February"
+      - "Maximum number of consecutive days with less than 1 mm of precipitation in each March"
+      - "Maximum number of consecutive days with less than 1 mm of precipitation in each April"
+      - "Maximum number of consecutive days with less than 1 mm of precipitation in each May"
+      - "Maximum number of consecutive days with less than 1 mm of precipitation in each June"
+      - "Maximum number of consecutive days with less than 1 mm of precipitation in each July"
+      - "Maximum number of consecutive days with less than 1 mm of precipitation in each August"
+      - "Maximum number of consecutive days with less than 1 mm of precipitation in each September"
+      - "Maximum number of consecutive days with less than 1 mm of precipitation in each October"
+      - "Maximum number of consecutive days with less than 1 mm of precipitation in each November"
+      - "Maximum number of consecutive days with less than 1 mm of precipitation in each December"
+    method: ""
+    sampling_period:
+      - ["01-01", "01-31"]
+      - ["02-01", "02-28(29)"]
+      - ["03-01", "03-31"]
+      - ["04-01", "04-30"]
+      - ["05-01", "05-31"]
+      - ["06-01", "06-30"]
+      - ["07-01", "07-31"]
+      - ["08-01", "08-31"]
+      - ["09-01", "09-30"]
+      - ["10-01", "10-31"]
+      - ["11-01", "11-30"]
+      - ["12-01", "12-31"]
+    topic: "Precipitations, Dry Period, Duration"
+
+  fr:
+    variable:
+      - dtCDDMA_janv
+      - dtCDDMA_fevr
+      - dtCDDMA_mars
+      - dtCDDMA_avril
+      - dtCDDMA_mai
+      - dtCDDMA_juin
+      - dtCDDMA_juil
+      - dtCDDMA_aout
+      - dtCDDMA_sept
+      - dtCDDMA_oct
+      - dtCDDMA_nov
+      - dtCDDMA_dec
+    unit: jour
+    name:
+      - Nombre maximal de jours secs consécutifs de chaque janvier
+      - Nombre maximal de jours secs consécutifs de chaque février
+      - Nombre maximal de jours secs consécutifs de chaque mars
+      - Nombre maximal de jours secs consécutifs de chaque avril
+      - Nombre maximal de jours secs consécutifs de chaque mai
+      - Nombre maximal de jours secs consécutifs de chaque juin
+      - Nombre maximal de jours secs consécutifs de chaque juillet
+      - Nombre maximal de jours secs consécutifs de chaque août
+      - Nombre maximal de jours secs consécutifs de chaque septembre
+      - Nombre maximal de jours secs consécutifs de chaque octobre
+      - Nombre maximal de jours secs consécutifs de chaque novembre
+      - Nombre maximal de jours secs consécutifs de chaque décembre
+    description:
+      - "Nombre maximal de jours consécutifs avec moins de 1 mm de précipitation de chaque janvier"
+      - "Nombre maximal de jours consécutifs avec moins de 1 mm de précipitation de chaque février"
+      - "Nombre maximal de jours consécutifs avec moins de 1 mm de précipitation de chaque mars"
+      - "Nombre maximal de jours consécutifs avec moins de 1 mm de précipitation de chaque avril"
+      - "Nombre maximal de jours consécutifs avec moins de 1 mm de précipitation de chaque mai"
+      - "Nombre maximal de jours consécutifs avec moins de 1 mm de précipitation de chaque juin"
+      - "Nombre maximal de jours consécutifs avec moins de 1 mm de précipitation de chaque juillet"
+      - "Nombre maximal de jours consécutifs avec moins de 1 mm de précipitation de chaque août"
+      - "Nombre maximal de jours consécutifs avec moins de 1 mm de précipitation de chaque septembre"
+      - "Nombre maximal de jours consécutifs avec moins de 1 mm de précipitation de chaque octobre"
+      - "Nombre maximal de jours consécutifs avec moins de 1 mm de précipitation de chaque novembre"
+      - "Nombre maximal de jours consécutifs avec moins de 1 mm de précipitation de chaque décembre"
+    method: ""
+    sampling_period:
+      - ["01-01", "31-01"]
+      - ["01-02", "28(29)-02"]
+      - ["01-03", "31-03"]
+      - ["01-04", "30-04"]
+      - ["01-05", "31-05"]
+      - ["01-06", "30-06"]
+      - ["01-07", "31-07"]
+      - ["01-08", "31-08"]
+      - ["01-09", "30-09"]
+      - ["01-10", "31-10"]
+      - ["01-11", "30-11"]
+      - ["01-12", "31-12"]
+    topic: "Précipitations, Période sèche, Durée"
+
+  global:
+    input_vars: R
+    to_normalise: false
+    palette: ["#003C30", "#01665E", "#35978F", "#80CDC1", "#C7EAE5",
+              "#F6E8C3", "#DFC27D", "#BF812D", "#8C510A", "#543005"]
+
+process:
+  P1:
+    funct:
+      dtCDDMA: [apply_threshold, "R", {lim: 1, where: "<", what: length, select: longest}]
+    time_step: year-month
+    NApct_lim: 3
+    NAyear_lim: 10
+    compress: true

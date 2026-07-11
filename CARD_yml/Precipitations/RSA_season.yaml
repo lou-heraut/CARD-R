@@ -1,0 +1,63 @@
+id: RSA_season
+version: "1.0"
+authors: []
+date: "2026-04-26"
+
+meta:
+  en:
+    variable: [RSA_DJF, RSA_MAM, RSA_JJA, RSA_SON]
+    unit: mm
+    name:
+      - Cumulative daily precipitation of each winter
+      - Cumulative daily precipitation of each spring
+      - Cumulative daily precipitation of each summer
+      - Cumulative daily precipitation of each autumn
+    description:
+      - "Months of December, January, and February"
+      - "Months of March, April, and May"
+      - "Months of June, July, and August"
+      - "Months of September, October, and November"
+    method: ""
+    sampling_period:
+      - ["12-01", "02-28(29)"]
+      - ["03-01", "05-31"]
+      - ["06-01", "08-31"]
+      - ["09-01", "11-30"]
+    topic: "Precipitations, Moderate, Intensity"
+
+  fr:
+    variable: [RSA_DJF, RSA_MAM, RSA_JJA, RSA_SON]
+    unit: mm
+    name:
+      - Cumul des précipitations journalières de chaque hiver
+      - Cumul des précipitations journalières de chaque printemps
+      - Cumul des précipitations journalières de chaque été
+      - Cumul des précipitations journalières de chaque automne
+    description:
+      - "Mois de décembre, janvier et février"
+      - "Mois de mars, avril et mai"
+      - "Mois de juin, juillet et août"
+      - "Mois de septembre, octobre et novembre"
+    method: ""
+    sampling_period:
+      - ["01-12", "28(29)-02"]
+      - ["01-03", "31-05"]
+      - ["01-06", "31-08"]
+      - ["01-09", "30-11"]
+    topic: "Précipitations, Modérée, Intensité"
+
+  global:
+    input_vars: R
+    to_normalise: false
+    palette: ["#452C1A", "#7F4A23", "#B3762A", "#D4B86A", "#EFE0B0",
+              "#BCE6DB", "#7ACEB9", "#449C93", "#2A6863", "#193830"]
+
+process:
+  P1:
+    funct:
+      RSA: [sumNA, "R", {skipna: true}]
+    time_step: year-season
+    Seasons: [DJF, MAM, JJA, SON]
+    NApct_lim: 3
+    NAyear_lim: 10
+    compress: true

@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "card"
+version = "0.1.0"
+description = "CARD — hydroclimatic variable extraction from YAML parameterization files (Python port)"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "pandas>=2.0",
+    "PyYAML",
+]
+
+# EXstat_py n'est pas encore packagé : le chemin est résolu par card/_exstat.py
+# (variable d'environnement EXSTAT_PY_PATH, sinon chemin par défaut du projet).
+
+[tool.setuptools.packages.find]
+include = ["card*"]

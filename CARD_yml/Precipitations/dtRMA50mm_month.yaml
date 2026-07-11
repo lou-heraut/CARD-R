@@ -1,0 +1,134 @@
+id: dtRMA50mm_month
+version: "1.0"
+authors: []
+date: "2026-04-26"
+
+meta:
+  en:
+    variable:
+      - dtRMA50mm_jan
+      - dtRMA50mm_feb
+      - dtRMA50mm_mar
+      - dtRMA50mm_apr
+      - dtRMA50mm_may
+      - dtRMA50mm_jun
+      - dtRMA50mm_jul
+      - dtRMA50mm_aug
+      - dtRMA50mm_sep
+      - dtRMA50mm_oct
+      - dtRMA50mm_nov
+      - dtRMA50mm_dec
+    unit: day
+    name:
+      - Number of extreme rain days for each January
+      - Number of extreme rain days for each February
+      - Number of extreme rain days for each March
+      - Number of extreme rain days for each April
+      - Number of extreme rain days for each May
+      - Number of extreme rain days for each June
+      - Number of extreme rain days for each July
+      - Number of extreme rain days for each August
+      - Number of extreme rain days for each September
+      - Number of extreme rain days for each October
+      - Number of extreme rain days for each November
+      - Number of extreme rain days for each December
+    description:
+      - "Number of days with at least 50 mm of precipitation for each January"
+      - "Number of days with at least 50 mm of precipitation for each February"
+      - "Number of days with at least 50 mm of precipitation for each March"
+      - "Number of days with at least 50 mm of precipitation for each April"
+      - "Number of days with at least 50 mm of precipitation for each May"
+      - "Number of days with at least 50 mm of precipitation for each June"
+      - "Number of days with at least 50 mm of precipitation for each July"
+      - "Number of days with at least 50 mm of precipitation for each August"
+      - "Number of days with at least 50 mm of precipitation for each September"
+      - "Number of days with at least 50 mm of precipitation for each October"
+      - "Number of days with at least 50 mm of precipitation for each November"
+      - "Number of days with at least 50 mm of precipitation for each December"
+    method: ""
+    sampling_period:
+      - ["01-01", "01-31"]
+      - ["02-01", "02-28(29)"]
+      - ["03-01", "03-31"]
+      - ["04-01", "04-30"]
+      - ["05-01", "05-31"]
+      - ["06-01", "06-30"]
+      - ["07-01", "07-31"]
+      - ["08-01", "08-31"]
+      - ["09-01", "09-30"]
+      - ["10-01", "10-31"]
+      - ["11-01", "11-30"]
+      - ["12-01", "12-31"]
+    topic: "Precipitations, Heavy, Duration"
+
+  fr:
+    variable:
+      - dtRMA50mm_janv
+      - dtRMA50mm_fevr
+      - dtRMA50mm_mars
+      - dtRMA50mm_avril
+      - dtRMA50mm_mai
+      - dtRMA50mm_juin
+      - dtRMA50mm_juil
+      - dtRMA50mm_aout
+      - dtRMA50mm_sept
+      - dtRMA50mm_oct
+      - dtRMA50mm_nov
+      - dtRMA50mm_dec
+    unit: jour
+    name:
+      - Nombre de jours de pluie extrême de chaque janvier
+      - Nombre de jours de pluie extrême de chaque février
+      - Nombre de jours de pluie extrême de chaque mars
+      - Nombre de jours de pluie extrême de chaque avril
+      - Nombre de jours de pluie extrême de chaque mai
+      - Nombre de jours de pluie extrême de chaque juin
+      - Nombre de jours de pluie extrême de chaque juillet
+      - Nombre de jours de pluie extrême de chaque août
+      - Nombre de jours de pluie extrême de chaque septembre
+      - Nombre de jours de pluie extrême de chaque octobre
+      - Nombre de jours de pluie extrême de chaque novembre
+      - Nombre de jours de pluie extrême de chaque décembre
+    description:
+      - "Nombre de jours avec au moins 50 mm de précipitations de chaque janvier"
+      - "Nombre de jours avec au moins 50 mm de précipitations de chaque février"
+      - "Nombre de jours avec au moins 50 mm de précipitations de chaque mars"
+      - "Nombre de jours avec au moins 50 mm de précipitations de chaque avril"
+      - "Nombre de jours avec au moins 50 mm de précipitations de chaque mai"
+      - "Nombre de jours avec au moins 50 mm de précipitations de chaque juin"
+      - "Nombre de jours avec au moins 50 mm de précipitations de chaque juillet"
+      - "Nombre de jours avec au moins 50 mm de précipitations de chaque août"
+      - "Nombre de jours avec au moins 50 mm de précipitations de chaque septembre"
+      - "Nombre de jours avec au moins 50 mm de précipitations de chaque octobre"
+      - "Nombre de jours avec au moins 50 mm de précipitations de chaque novembre"
+      - "Nombre de jours avec au moins 50 mm de précipitations de chaque décembre"
+    method: ""
+    sampling_period:
+      - ["01-01", "31-01"]
+      - ["01-02", "28(29)-02"]
+      - ["01-03", "31-03"]
+      - ["01-04", "30-04"]
+      - ["01-05", "31-05"]
+      - ["01-06", "30-06"]
+      - ["01-07", "31-07"]
+      - ["01-08", "31-08"]
+      - ["01-09", "30-09"]
+      - ["01-10", "31-10"]
+      - ["01-11", "30-11"]
+      - ["01-12", "31-12"]
+    topic: "Précipitations, Forte, Durée"
+
+  global:
+    input_vars: R
+    to_normalise: false
+    palette: ["#452C1A", "#7F4A23", "#B3762A", "#D4B86A", "#EFE0B0",
+              "#BCE6DB", "#7ACEB9", "#449C93", "#2A6863", "#193830"]
+
+process:
+  P1:
+    funct:
+      dtRMA50mm: [apply_threshold, "R", {lim: 50, where: ">=", what: length, select: all}]
+    time_step: year-month
+    NApct_lim: 3
+    NAyear_lim: 10
+    compress: true

@@ -1,0 +1,47 @@
+id: VCN30_summer
+version: "1.0"
+authors: []
+date: "2026-04-30"
+
+meta:
+  en:
+    variable: VCN30_summer
+    unit: "m^{3}.s^{-1}"
+    name: Summer minimum of 30-day mean daily discharge
+    description: ""
+    method: |
+      1. no temporal aggregation - 30-day centered moving average
+      2. annual aggregation [05-01, 11-30] - minimum
+    sampling_period: ["05-01", "11-30"]
+    topic: "Flow, Low Flows, Intensity"
+
+  fr:
+    variable: VCN30_été
+    unit: "m^{3}.s^{-1}"
+    name: Minimum estival de la moyenne sur 30 jours du débit journalier
+    description: ""
+    method: |
+      1. aucune agrégation temporelle - moyenne mobile centrée sur 30 jours
+      2. agrégation annuelle [01-05, 30-11] - minimum
+    sampling_period: ["01-05", "30-11"]
+    topic: "Débit, Basses Eaux, Intensité"
+
+  global:
+    input_vars: Q
+    preferred_sampling_period: "01-01"
+    palette: ["#452C1A", "#7F4A23", "#B3762A", "#D4B86A", "#EFE0B0",
+              "#BCE6DB", "#7ACEB9", "#449C93", "#2A6863", "#193830"]
+
+process:
+  P1:
+    funct:
+      VC30_summer: [rollmean_center, "Q", {k: 30}]
+    time_step: none
+    keep: all
+    NAyear_lim: 10
+
+  P2:
+    funct:
+      VCN30_summer: [minNA, "VC30_summer", {skipna: true}]
+    sampling_period: ["05-01", "11-30"]
+    NApct_lim: 3

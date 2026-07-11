@@ -1,0 +1,70 @@
+id: QSA_season
+version: "1.0"
+authors: []
+date: "2026-04-30"
+
+meta:
+  en:
+    variable: [QSA_DJF, QSA_MAM, QSA_JJA, QSA_SON]
+    unit: "m^{3}.s^{-1}"
+    name:
+      - Average daily flows for each winter
+      - Average daily flows for each spring
+      - Average daily flows for each summer
+      - Average daily flows for each autumn
+    description:
+      - Months of December, January, and February
+      - Months of March, April, and May
+      - Months of June, July, and August
+      - Months of September, October, and November
+    method:
+      - "1. seasonal annual aggregation [12-01, 02-28(29)] - mean"
+      - "1. seasonal annual aggregation [03-01, 05-31] - mean"
+      - "1. seasonal annual aggregation [06-01, 08-31] - mean"
+      - "1. seasonal annual aggregation [09-01, 11-30] - mean"
+    sampling_period:
+      - ["12-01", "02-28(29)"]
+      - ["03-01", "05-31"]
+      - ["06-01", "08-31"]
+      - ["09-01", "11-30"]
+    topic: "Flow, Mean Flows, Intensity"
+
+  fr:
+    variable: [QSA_DJF, QSA_MAM, QSA_JJA, QSA_SON]
+    unit: "m^{3}.s^{-1}"
+    name:
+      - Moyenne des débits journaliers de chaque hiver
+      - Moyenne des débits journaliers de chaque printemps
+      - Moyenne des débits journaliers de chaque été
+      - Moyenne des débits journaliers de chaque automne
+    description:
+      - Mois de décembre, janvier et février
+      - Mois de mars, avril et mai
+      - Mois de juin, juillet et août
+      - Mois de septembre, octobre et novembre
+    method:
+      - "1. agrégation annuelle saisonnalisé [01-12, 28(29)-02] - moyenne"
+      - "1. agrégation annuelle saisonnalisé [01-03, 31-05] - moyenne"
+      - "1. agrégation annuelle saisonnalisé [01-06, 31-08] - moyenne"
+      - "1. agrégation annuelle saisonnalisé [01-09, 30-11] - moyenne"
+    sampling_period:
+      - ["01-12", "28(29)-02"]
+      - ["01-03", "31-05"]
+      - ["01-06", "31-08"]
+      - ["01-09", "30-11"]
+    topic: "Débit, Moyennes Eaux, Intensité"
+
+  global:
+    input_vars: Q
+    palette: ["#452C1A", "#7F4A23", "#B3762A", "#D4B86A", "#EFE0B0",
+              "#BCE6DB", "#7ACEB9", "#449C93", "#2A6863", "#193830"]
+
+process:
+  P1:
+    funct:
+      QSA: [mean, "Q", {skipna: true}]
+    time_step: year-season
+    Seasons: [DJF, MAM, JJA, SON]
+    NApct_lim: 3
+    NAyear_lim: 10
+    compress: true

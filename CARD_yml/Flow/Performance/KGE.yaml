@@ -1,0 +1,43 @@
+id: KGE
+version: "1.0"
+authors: []
+date: "2026-04-26"
+
+meta:
+  en:
+    variable: KGE
+    unit: "without unit"
+    name: Kling-Gupta Performance Coefficient
+    description: >-
+      It measures the proximity between reference and simulated data series
+      based on three sub-criteria (r, alpha, and beta) with equal weights.
+      The coefficient gives strong weight to the reconstruction of high values
+      of the examined variable.
+    method: "1. no temporal aggregation - calculation of KGE"
+    topic: "Flow, Performance"
+
+  fr:
+    variable: KGE
+    unit: "sans unité"
+    name: Coefficient de performance de Kling-Gupta
+    description: >-
+      Il mesure la proximité entre les séries de données de référence et
+      celles simulées, sur la base de trois sous-critères (r, alpha et beta)
+      aux pondérations identiques. Le coefficient donne un poids fort à la
+      reconstitution des valeurs fortes de la variable examinée.
+    method: "1. aucune agrégation temporelle - calcul du KGE"
+    topic: "Débit, Performance"
+
+  global:
+    input_vars: "Q_obs, Q_sim"
+    source: |
+      GUPTA, H. V. et al. (2009). « Decomposition of the mean squared error and NSE performance criteria :
+      Implications for improving hydrological modelling ». In : Journal of Hydrology 377, p. 80-91.
+    to_normalise: false
+
+process:
+  P1:
+    funct:
+      KGE: [compute_KGE, "Q_obs", "Q_sim"]
+    time_step: none
+    NAyear_lim: 10

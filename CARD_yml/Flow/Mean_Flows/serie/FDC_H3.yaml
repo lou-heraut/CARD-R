@@ -1,0 +1,33 @@
+id: FDC_H3
+version: "1.0"
+authors: []
+date: "2026-04-30"
+
+meta:
+  en:
+    variable: FDC_H3
+    unit: "m^{3}.s^{-1}"
+    name: Flow duration curve of distant horizon
+    description: ""
+    method: "1. no temporal aggregation - flow duration curves with 1000 points spaced according to a centered reduced normal distribution."
+    topic: "Flow, Mean Flows, Intensity"
+
+  fr:
+    variable: CDC_H3
+    unit: "m^{3}.s^{-1}"
+    name: "Courbe des débits classés de l'horizon lointain"
+    description: ""
+    method: "1. aucune agrégation temporelle - courbes des débits classés avec 1000 points espacés selon une loi normale centrée réduite"
+    topic: "Débit, Moyennes Eaux, Intensité"
+
+  global:
+    input_vars: Q
+
+process:
+  P1:
+    funct:
+      FDC_H3_p: [compute_FDC_p, {n: 1000, isNormLaw: true}]
+      FDC_H3_Q: [compute_FDC_Q, "Q", {n: 1000, isNormLaw: true}]
+    period: ["2070-01-01", "2099-12-31"]
+    time_step: none
+    NAyear_lim: 10

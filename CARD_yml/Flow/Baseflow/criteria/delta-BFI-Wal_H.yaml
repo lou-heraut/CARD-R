@@ -1,0 +1,74 @@
+id: delta-BFI-Wal_H
+version: "1.0"
+authors: []
+date: "2026-04-26"
+
+meta:
+  en:
+    variable: [delta-BFI-Wal_H1, delta-BFI-Wal_H2, delta-BFI-Wal_H3]
+    unit: without unit
+    name:
+      - "Change of baseflow index between the near horizon and historical period
+         (Wallingford)"
+      - "Change of baseflow index between the middle horizon and historical period
+         (Wallingford)"
+      - "Change of baseflow index between the distant horizon and historical period
+         (Wallingford)"
+    description: >-
+      Ratio between mean inter-annual base flow and mean inter-annual flow
+    method: |
+      1. no temporal aggregation - extraction of the base flow (Wallingford)
+      2. no temporal aggregation - calculation of the BFI change between the
+         historical period and the {horizon} horizon
+    horizon_labels: {H1: near, H2: middle, H3: distant}
+    topic: "Flow, Base Flow, Intensity"
+
+  fr:
+    variable: [delta-BFI-Wal_H1, delta-BFI-Wal_H2, delta-BFI-Wal_H3]
+    unit: sans unité
+    name:
+      - "Changement de l'indice de débit de base entre l'horizon proche et la
+         période historique (Wallingford)"
+      - "Changement de l'indice de débit de base entre l'horizon moyen et la
+         période historique (Wallingford)"
+      - "Changement de l'indice de débit de base entre l'horizon lointain et la
+         période historique (Wallingford)"
+    description: >-
+      Rapport entre débit de base moyen inter-annuel et débit moyen inter-annuel
+    method: |
+      1. aucune agrégation temporelle - extraction du débit de base (Wallingford)
+      2. aucune agrégation temporelle - calcul du changement de BFI entre la
+         période historique et l'horizon {horizon}
+    horizon_labels: {H1: proche, H2: moyen, H3: lointain}
+    topic: "Débit, Débit de Base, Intensité"
+
+  global:
+    input_vars: Q
+    source: >-
+      TALLAKSEN, L. et H. VAN LANEN, éd. (2004). Hydrological drought. Processes
+      and estimation methods for streamflow and groundwater. Developments in water
+      science 48. Netherlands : Elsevier. ISBN : 9780444516886.
+    to_normalise: false
+    horizons:
+      H0: ["1976-01-01", "2005-08-31"]
+      H1: ["2021-01-01", "2050-12-31"]
+      H2: ["2041-01-01", "2070-12-31"]
+      H3: ["2070-01-01", "2099-12-31"]
+
+process:
+  P1:
+    funct:
+      BF-Wal: [BFS, "Q", {method: Wal}]
+    time_step: none
+    keep: all
+    NAyear_lim: 10
+
+  P2:
+    funct:
+      delta-BFI-Wal_H1: [get_deltaX, "BF-Wal", "date",
+                          {past: $H0, futur: $H1, to_normalise: false, Q_for_BFI: "Q"}]
+      delta-BFI-Wal_H2: [get_deltaX, "BF-Wal", "date",
+                          {past: $H0, futur: $H2, to_normalise: false, Q_for_BFI: "Q"}]
+      delta-BFI-Wal_H3: [get_deltaX, "BF-Wal", "date",
+                          {past: $H0, futur: $H3, to_normalise: false, Q_for_BFI: "Q"}]
+    time_step: none

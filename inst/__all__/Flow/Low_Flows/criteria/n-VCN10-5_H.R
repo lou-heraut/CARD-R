@@ -74,7 +74,7 @@ CARD$P1.keep = "all"
 CARD$P1.NAyear_lim = 10
 
 ### P2 _______________________________________________________________
-CARD$P2.funct = list("n-VCN10"=minNA)
+CARD$P2.funct = list(VCN10=minNA)
 CARD$P2.funct_args = list("VC10", na.rm=TRUE)
 CARD$P2.time_step = "year"
 CARD$P2.sampling_period = list(max, list("Q", na.rm=TRUE))

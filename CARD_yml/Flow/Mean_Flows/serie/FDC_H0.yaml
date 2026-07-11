@@ -1,0 +1,33 @@
+id: FDC_H0
+version: "1.0"
+authors: []
+date: "2026-04-30"
+
+meta:
+  en:
+    variable: FDC_H0
+    unit: "m^{3}.s^{-1}"
+    name: Flow duration curve of historical period
+    description: ""
+    method: "1. no temporal aggregation - flow duration curves with 1000 points spaced according to a centered reduced normal distribution."
+    topic: "Flow, Mean Flows, Intensity"
+
+  fr:
+    variable: CDC_H0
+    unit: "m^{3}.s^{-1}"
+    name: Courbe des débits classés de la période historique
+    description: ""
+    method: "1. aucune agrégation temporelle - courbes des débits classés avec 1000 points espacés selon une loi normale centrée réduite"
+    topic: "Débit, Moyennes Eaux, Intensité"
+
+  global:
+    input_vars: Q
+
+process:
+  P1:
+    funct:
+      FDC_H0_p: [compute_FDC_p, {n: 1000, isNormLaw: true}]
+      FDC_H0_Q: [compute_FDC_Q, "Q", {n: 1000, isNormLaw: true}]
+    period: ["1976-01-01", "2005-08-31"]
+    time_step: none
+    NAyear_lim: 10

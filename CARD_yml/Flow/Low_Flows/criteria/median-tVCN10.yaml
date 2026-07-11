@@ -1,0 +1,56 @@
+id: median-tVCN10
+version: "1.0"
+authors: []
+date: "2026-04-30"
+
+meta:
+  en:
+    variable: median-tVCN10
+    unit: yearday
+    name: Median of dates of the annual minimum of 10-day mean flows
+    description: ""
+    method: |
+      1. no temporal aggregation - 10-day centered moving average
+      2. annual aggregation [Month of maximum monthly flows] - date of the minimum
+      3. no temporal aggregation - median
+    sampling_period: Month of maximum monthly flows
+    topic: "Flow, Low Flows, Seasonality"
+
+  fr:
+    variable: mediane-tVCN10
+    unit: "jour de l'année"
+    name: Médiane des dates du minimum annuel des débits moyens sur 10 jours
+    description: ""
+    method: |
+      1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+      2. agrégation annuelle [Mois du maximum des débits mensuels] - date du minimum
+      3. aucune agrégation temporelle - médiane
+    sampling_period: Mois du maximum des débits mensuels
+    topic: "Débit, Basses Eaux, Saisonnalité"
+
+  global:
+    input_vars: Q
+    preferred_sampling_period: "01-01"
+    is_date: true
+    to_normalise: false
+
+process:
+  P1:
+    funct:
+      VC10: [rollmean_center, "Q", {k: 10}]
+    time_step: none
+    keep: all
+    NAyear_lim: 10
+
+  P2:
+    funct:
+      tVCN10: [which.minNA, "VC10", true]
+    sampling_period:
+      type: adaptive
+      funct: [max, "Q", {skipna: true}]
+    NApct_lim: 3
+
+  P3:
+    funct:
+      median-tVCN10: [circular_median, "tVCN10", {periodicity: 365.25, skipna: true}]
+    time_step: none

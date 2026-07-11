@@ -1,0 +1,31 @@
+id: a-FDC
+version: "1.0"
+authors: []
+date: "2026-04-26"
+
+meta:
+  en:
+    variable: a-FDC
+    unit: "without unit"
+    name: Slope of the segment between the 33 % and 66 % quantiles of the flow duration curve
+    description: ""
+    method: "1. no temporal aggregation - computation of the flow duration curve and differences between quantiles"
+    topic: "Flow, Mean Flows, Intensity"
+
+  fr:
+    variable: a-CDC
+    unit: "sans unité"
+    name: Pente du segment entre les quantiles des débits journaliers à 33 % et 66 % de la courbe des débits classés
+    description: ""
+    method: "1. aucune agrégation temporelle - calcul de la courbe des débits classés et des différences entre quantiles"
+    topic: "Débit, Moyennes Eaux, Intensité"
+
+  global:
+    input_vars: Q
+
+process:
+  P1:
+    funct:
+      a-FDC: [fdc_slope, "Q", {p: [0.33, 0.66]}]
+    time_step: none
+    NAyear_lim: 10

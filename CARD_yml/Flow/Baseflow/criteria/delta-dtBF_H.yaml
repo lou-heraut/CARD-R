@@ -1,0 +1,81 @@
+id: delta-dtBF_H
+version: "1.0"
+authors: []
+date: "2026-04-26"
+
+meta:
+  en:
+    variable: [delta-dtBF_H1, delta-dtBF_H2, delta-dtBF_H3]
+    unit: day
+    name:
+      - "Average change of the duration of low flows between the near horizon
+         and historical period"
+      - "Average change of the duration of low flows between the middle horizon
+         and historical period"
+      - "Average change of the duration of low flows between the distant horizon
+         and historical period"
+    description: >-
+      Duration between the start and end of low flows
+    method: |
+      1. annual aggregation [09-01, 08-31] - number of days between the dates when
+         the baseflow (Wallingford) sum corresponds to 10 % and 90 % of the total sum
+      2. no temporal aggregation - calculation of the average change between the
+         historical period and the {horizon} horizon
+    horizon_labels: {H1: near, H2: middle, H3: distant}
+    sampling_period: ["09-01", "08-31"]
+    topic: "Flow, Baseflow, Duration"
+
+  fr:
+    variable: [delta-dtQB_H1, delta-dtQB_H2, delta-dtQB_H3]
+    unit: jour
+    name:
+      - "Changement moyen de la durée des écoulements lents entre l'horizon proche
+         et la période historique"
+      - "Changement moyen de la durée des écoulements lents entre l'horizon moyen
+         et la période historique"
+      - "Changement moyen de la durée des écoulements lents entre l'horizon lointain
+         et la période historique"
+    description: >-
+      Durée entre le début et la fin des écoulements lents
+    method: |
+      1. agrégation annuelle [01-09, 31-08] - nombre de jours entre les dates
+         auxquelles la somme du débit de base (Wallingford) correspond à 10 % et
+         90 % de la somme totale
+      2. aucune agrégation temporelle - calcul du changement moyen entre la
+         période historique et l'horizon {horizon}
+    horizon_labels: {H1: proche, H2: moyen, H3: lointain}
+    sampling_period: ["01-09", "31-08"]
+    topic: "Débit, Débit de Base, Durée"
+
+  global:
+    input_vars: Q
+    source: >-
+      TALLAKSEN, L. et H. VAN LANEN, éd. (2004). Hydrological drought. Processes
+      and estimation methods for streamflow and groundwater. Developments in water
+      science 48. Netherlands : Elsevier. ISBN : 9780444516886.
+    preferred_sampling_period: "09-01"
+    palette: ["#003C30", "#01665E", "#35978F", "#80CDC1", "#C7EAE5",
+              "#F6E8C3", "#DFC27D", "#BF812D", "#8C510A", "#543005"]
+    horizons:
+      H0: ["1976-01-01", "2005-08-31"]
+      H1: ["2021-01-01", "2050-12-31"]
+      H2: ["2041-01-01", "2070-12-31"]
+      H3: ["2070-01-01", "2099-12-31"]
+
+process:
+  P1:
+    funct:
+      dtBF: [compute_tSnowmelt, "Q", {p1: 0.1, p2: 0.9, method: Wal}]
+    sampling_period: "09-01"
+    NApct_lim: 3
+    NAyear_lim: 10
+
+  P2:
+    funct:
+      delta-dtBF_H1: [get_deltaX, "dtBF", "date",
+                      {past: $H0, futur: $H1, to_normalise: true}]
+      delta-dtBF_H2: [get_deltaX, "dtBF", "date",
+                      {past: $H0, futur: $H2, to_normalise: true}]
+      delta-dtBF_H3: [get_deltaX, "dtBF", "date",
+                      {past: $H0, futur: $H3, to_normalise: true}]
+    time_step: none

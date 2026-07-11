@@ -47,14 +47,14 @@ parser$add_argument("-v", "--verbose", action="store_true", default=FALSE,
 
 args = parser$parse_args()
 
-dev_file = "/home/lheraut/Documents/INRAE/projects/EXstat_project/EXstat/R/CARD_management.R"
+dev_file = "/home/lheraut/Documents/INRAE/projects/CARD_project/CARD/R/CARD_management.R"
 if (file.exists(dev_file)) {
     source(dev_file)
     if (exists("CARD_management")) {
         CARD_management(args=args)
     } else {
-        EXstat::CARD_management(args=args) 
+        CARD::CARD_management(args=args) 
     }
 } else {
-    EXstat::CARD_management(args=args)
+    CARD::CARD_management(args=args)
 }

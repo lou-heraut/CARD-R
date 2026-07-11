@@ -1,0 +1,78 @@
+id: epsilon_T_season
+version: "1.0"
+authors: []
+date: "2026-04-26"
+
+meta:
+  en:
+    variable: [epsilon_T_DJF, epsilon_T_MAM, epsilon_T_JJA, epsilon_T_SON]
+    unit: without unit
+    name:
+      - Winter flow elasticity to air temperatures
+      - Spring flow elasticity to air temperatures
+      - Summer flow elasticity to air temperatures
+      - Autumn flow elasticity to air temperatures
+    description:
+      - "Months of December, January, and February"
+      - "Months of March, April, and May"
+      - "Months of June, July, and August"
+      - "Months of September, October, and November"
+    method:
+      - "1. seasonal annual aggregation [12-01, 02-28(29)] - mean flow and mean temperatures\n2. no temporal aggregation - calculation of elasticity ε"
+      - "1. seasonal annual aggregation [03-01, 05-31] - mean flow and mean temperatures\n2. no temporal aggregation - calculation of elasticity ε"
+      - "1. seasonal annual aggregation [06-01, 08-31] - mean flow and mean temperatures\n2. no temporal aggregation - calculation of elasticity ε"
+      - "1. seasonal annual aggregation [09-01, 11-30] - mean flow and mean temperatures\n2. no temporal aggregation - calculation of elasticity ε"
+    sampling_period:
+      - ["12-01", "02-28(29)"]
+      - ["03-01", "05-31"]
+      - ["06-01", "08-31"]
+      - ["09-01", "11-30"]
+    topic: "Flow / Temperature, Sensitivity to Climate Variability"
+
+  fr:
+    variable: [epsilon_T_DJF, epsilon_T_MAM, epsilon_T_JJA, epsilon_T_SON]
+    unit: sans unité
+    name:
+      - Élasticité hivernale du débit aux températures de l'air
+      - Élasticité printanière du débit aux températures de l'air
+      - Élasticité estivale du débit aux températures de l'air
+      - Élasticité automnale du débit aux températures de l'air
+    description:
+      - "Mois de décembre, janvier et février"
+      - "Mois de mars, avril et mai"
+      - "Mois de juin, juillet et août"
+      - "Mois de septembre, octobre et novembre"
+    method:
+      - "1. agrégation annuelle saisonnalisée [01-12, 28(29)-02] - débit moyen et températures moyennes\n2. aucune agrégation temporelle - calcul de l'élasticité ε"
+      - "1. agrégation annuelle saisonnalisée [01-03, 31-05] - débit moyen et températures moyennes\n2. aucune agrégation temporelle - calcul de l'élasticité ε"
+      - "1. agrégation annuelle saisonnalisée [01-06, 31-08] - débit moyen et températures moyennes\n2. aucune agrégation temporelle - calcul de l'élasticité ε"
+      - "1. agrégation annuelle saisonnalisée [01-09, 30-11] - débit moyen et températures moyennes\n2. aucune agrégation temporelle - calcul de l'élasticité ε"
+    sampling_period:
+      - ["01-12", "28(29)-02"]
+      - ["01-03", "31-05"]
+      - ["01-06", "31-08"]
+      - ["01-09", "30-11"]
+    topic: "Débit / Température, Sensibilité à la variabilité climatique"
+
+  global:
+    input_vars: "Q, T"
+    source: |
+      SANKARASUBRAMANIAN, A., R. M. VOGEL et J. F. LIMBRUNNER (1991). « Climate elasticity of streamflow in the United States ». In : Water Resour. Res. 37, p. 1771-1781.
+
+process:
+  P1:
+    funct:
+      QA: [mean, "Q", {skipna: true}]
+      TA: [mean, "T", {skipna: true}]
+    time_step: year-season
+    Seasons: [DJF, MAM, JJA, SON]
+    NApct_lim: 3
+    NAyear_lim: 10
+    compress: true
+  P2:
+    funct:
+      epsilon_T_DJF: [compute_elasticity, {Q: "QA_DJF", X: "TA_DJF"}]
+      epsilon_T_MAM: [compute_elasticity, {Q: "QA_MAM", X: "TA_MAM"}]
+      epsilon_T_JJA: [compute_elasticity, {Q: "QA_JJA", X: "TA_JJA"}]
+      epsilon_T_SON: [compute_elasticity, {Q: "QA_SON", X: "TA_SON"}]
+    time_step: none

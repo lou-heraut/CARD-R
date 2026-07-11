@@ -53,6 +53,7 @@ CARD$P.topic_fr = "Débit, Débit de Base, Intensité"
 
 ### Global ___________________________________________________________
 CARD$P.input_vars = "Q"
+CARD$P.source = "TALLAKSEN, L. et H. VAN LANEN, éd. (2004). Hydrological drought. Processes and estimation methods for streamflow and groundwater. English. Developments in water science 48. Netherlands : Elsevier. ISBN : 9780444516886."
 CARD$P.is_date = FALSE
 CARD$P.to_normalise = FALSE
 CARD$P.palette = NULL

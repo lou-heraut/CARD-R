@@ -1,0 +1,50 @@
+id: QMNA
+version: "1.0"
+authors: []
+date: "2026-04-28"
+
+meta:
+  en:
+    variable: QMNA
+    unit: "m^{3}.s^{-1}"
+    name: Annual minimum of monthly flows
+    description: ""
+    method: |
+      1. monthly aggregation - mean
+      2. annual aggregation [Month of maximum monthly flows] - minimum
+    sampling_period: Month of maximum monthly flows
+    topic: "Flow, Low Flows, Intensity"
+
+  fr:
+    variable: QMNA
+    unit: "m^{3}.s^{-1}"
+    name: Minimum annuel des débits mensuels
+    description: ""
+    method: |
+      1. agrégation mensuelle - moyenne
+      2. agrégation annuelle [Mois du maximum des débits mensuels] - minimum
+    sampling_period: Mois du maximum des débits mensuels
+    topic: "Débit, Basses Eaux, Intensité"
+
+  global:
+    input_vars: Q
+    preferred_sampling_period: "01-01"
+    palette: ["#452C1A", "#7F4A23", "#B3762A", "#D4B86A", "#EFE0B0",
+              "#BCE6DB", "#7ACEB9", "#449C93", "#2A6863", "#193830"]
+
+process:
+  P1:
+    funct:
+      QMA: [mean, "Q", {skipna: true}]
+    time_step: year-month
+    NApct_lim: 3
+    NAyear_lim: 10
+    keep: all
+
+  P2:
+    funct:
+      QMNA: [minNA, "QMA", {skipna: true}]
+    sampling_period:
+      type: adaptive
+      funct: [max, "QMA", {skipna: true}]
+    NApct_lim: 3

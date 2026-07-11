@@ -1,0 +1,90 @@
+id: delta-vLF_H
+version: "1.0"
+authors: []
+date: "2026-04-28"
+
+meta:
+  en:
+    variable: [delta-vLF_H1, delta-vLF_H2, delta-vLF_H3]
+    unit: "%"
+    name:
+      - Average change of low flow deficit volume between the near horizon and historical period
+      - Average change of low flow deficit volume between the middle horizon and historical period
+      - Average change of low flow deficit volume between the distant horizon and historical period
+    description: Sum of the differences between the 10-day average and the maximum of the VCN10, over the longest sequence below this threshold
+    method: |
+      1. no temporal aggregation - 10-day centered moving average
+      2. annual aggregation [Month of maximum monthly flows] - minimum (extraction of the VCN10 series)
+      3. no temporal aggregation - the maximum of the previous series is taken as the threshold
+      4. annual aggregation [Month of maximum monthly flows] - sum of volumes discharged each day over the longest period below the previous threshold
+      5. no temporal aggregation - calculation of the average change between the historical period and the {horizon} horizon
+    horizon_labels: {H1: near, H2: middle, H3: distant}
+    sampling_period: Month of maximum monthly flows
+    topic: "Flow, Low Flows, Intensity"
+
+  fr:
+    variable: [delta-vBE_H1, delta-vBE_H2, delta-vBE_H3]
+    unit: "%"
+    name:
+      - Changement moyen du volume de déficit des basses eaux entre l'horizon proche et la période historique
+      - Changement moyen du volume de déficit des basses eaux entre l'horizon moyen et la période historique
+      - Changement moyen du volume de déficit des basses eaux entre l'horizon lointain et la période historique
+    description: Somme des écarts entre la moyenne sur 10 jours et le maximum des VCN10, sur la séquence la plus longue sous ce seuil
+    method: |
+      1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+      2. agrégation annuelle [Mois du maximum des débits mensuels] - minimum (extraction de la série des VCN10)
+      3. aucune agrégation temporelle - le maximum de la précédente série est pris comme seuil
+      4. agrégation annuelle [Mois du maximum des débits mensuels] - somme des volumes écoulés chaque jour de la plus longue période sous le précédent seuil
+      5. aucune agrégation temporelle - calcul du changement moyen entre la période historique et l'horizon {horizon}
+    horizon_labels: {H1: proche, H2: moyen, H3: lointain}
+    sampling_period: Mois du maximum des débits mensuels
+    topic: "Débit, Basses Eaux, Intensité"
+
+  global:
+    input_vars: Q
+    preferred_sampling_period: "01-01"
+    palette: ["#003C30", "#01665E", "#35978F", "#80CDC1", "#C7EAE5",
+              "#F6E8C3", "#DFC27D", "#BF812D", "#8C510A", "#543005"]
+    horizons:
+      H0: ["1976-01-01", "2005-08-31"]
+      H1: ["2021-01-01", "2050-12-31"]
+      H2: ["2041-01-01", "2070-12-31"]
+      H3: ["2070-01-01", "2099-12-31"]
+
+process:
+  P1:
+    funct:
+      VC10: [rollmean_center, "Q", {k: 10}]
+    time_step: none
+    keep: all
+
+  P2:
+    funct:
+      VCN10: [minNA, "VC10", {skipna: true}]
+    sampling_period:
+      type: adaptive
+      funct: [max, "Q", {skipna: true}]
+    NApct_lim: 3
+    NAyear_lim: 10
+    keep: all
+
+  P3:
+    funct:
+      upLim: [maxNA, "VCN10", {skipna: true}]
+    time_step: none
+    keep: all
+
+  P4:
+    funct:
+      vLF: [compute_VolDef, "VC10", {select: longest, upLim: upLim}]
+    sampling_period:
+      type: adaptive
+      funct: [max, "Q", {skipna: true}]
+    NApct_lim: 3
+
+  P5:
+    funct:
+      delta-vLF_H1: [get_deltaX, "vLF", "date", {past: $H0, futur: $H1, to_normalise: true}]
+      delta-vLF_H2: [get_deltaX, "vLF", "date", {past: $H0, futur: $H2, to_normalise: true}]
+      delta-vLF_H3: [get_deltaX, "vLF", "date", {past: $H0, futur: $H3, to_normalise: true}]
+    time_step: none

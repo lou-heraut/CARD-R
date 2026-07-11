@@ -1,0 +1,41 @@
+id: QJXA
+version: "1.0"
+authors: []
+date: "2026-04-28"
+
+meta:
+  en:
+    variable: QJXA
+    unit: "m^{3}.s^{-1}"
+    name: "Annual maximum daily flow"
+    description: ""
+    method: |
+      1. annual aggregation [Month of minimum monthly flows] - maximum
+    sampling_period: Month of minimum monthly flows
+    topic: "Flow, High Flows, Intensity"
+
+  fr:
+    variable: QJXA
+    unit: "m^{3}.s^{-1}"
+    name: "Débit journalier maximal annuel"
+    description: ""
+    method: |
+      1. agrégation annuelle [Mois du minimum des débits mensuels] - maximum
+    sampling_period: Mois du minimum des débits mensuels
+    topic: "Débit, Hautes Eaux, Intensité"
+
+  global:
+    input_vars: Q
+    preferred_sampling_period: "09-01"
+    palette: ["#452C1A", "#7F4A23", "#B3762A", "#D4B86A", "#EFE0B0",
+              "#BCE6DB", "#7ACEB9", "#449C93", "#2A6863", "#193830"]
+
+process:
+  P1:
+    funct:
+      QJXA: [maxNA, "Q", {skipna: true}]
+    sampling_period:
+      type: adaptive
+      funct: [min, "Q", {skipna: true}]
+    NApct_lim: 3
+    NAyear_lim: 10

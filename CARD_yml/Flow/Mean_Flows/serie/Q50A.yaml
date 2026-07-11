@@ -1,0 +1,37 @@
+id: Q50A
+version: "1.0"
+authors: []
+date: "2026-04-30"
+
+meta:
+  en:
+    variable: Q50A
+    unit: "m^{3}.s^{-1}"
+    name: Median of annual flows
+    description: Annual flow with an exceedance probability of 50 % (50th percentile)
+    method: "1. annual aggregation [01-01, 12-31] - median"
+    sampling_period: ["01-01", "12-31"]
+    topic: "Flow, Mean Flows, Intensity"
+
+  fr:
+    variable: Q50A
+    unit: "m^{3}.s^{-1}"
+    name: Médiane des débits annuels
+    description: "Débit annuel avec une probabilité de dépassement de 50 % (centile 50 %)"
+    method: "1. agrégation annuelle [01-01, 31-12] - médiane"
+    sampling_period: ["01-01", "31-12"]
+    topic: "Débit, Moyennes Eaux, Intensité"
+
+  global:
+    input_vars: Q
+    preferred_sampling_period: "01-01"
+    palette: ["#452C1A", "#7F4A23", "#B3762A", "#D4B86A", "#EFE0B0",
+              "#BCE6DB", "#7ACEB9", "#449C93", "#2A6863", "#193830"]
+
+process:
+  P1:
+    funct:
+      Q50A: [compute_Qp, "Q", {p: 0.5}]
+    sampling_period: "01-01"
+    NApct_lim: 3
+    NAyear_lim: 10

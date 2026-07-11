@@ -1,0 +1,215 @@
+file_r,file_yaml,status,confidence,notes
+Evapotranspiration/ETPA.R,Evapotranspiration/ETPA.yaml,done,high,input_vars=ETP (non-default); method vide conservé tel quel
+Flow/Baseflow/criteria/BFI-Wal.R,Flow/Baseflow/criteria/BFI-Wal.yaml,done,high,source TALLAKSEN présent; to_normalise=false; P2 get_BFI sans kwargs
+Flow/Baseflow/criteria/BFM.R,Flow/Baseflow/criteria/BFM.yaml,done,high,source TALLAKSEN; to_normalise=false; 3 étapes P1/P2/P3
+Flow/Baseflow/criteria/delta-BFI-LH_H.R,Flow/Baseflow/criteria/delta-BFI-LH_H.yaml,done,high,Q_for_BFI kwarg inclus dans get_deltaX; pas de source dans ce fichier R
+Flow/Baseflow/criteria/delta-BFI-Wal_H.R,Flow/Baseflow/criteria/delta-BFI-Wal_H.yaml,done,high,Q_for_BFI kwarg inclus; source TALLAKSEN présent
+Flow/Baseflow/criteria/delta-centerBF_H.R,Flow/Baseflow/criteria/delta-centerBF_H.yaml,done,high,P1.is_date=true encodé dans tuple; compute_tVolSnowmelt p=0.5
+Flow/Baseflow/criteria/delta-dtBF_H.R,Flow/Baseflow/criteria/delta-dtBF_H.yaml,done,medium,to_normalise=true inclus dans kwargs (valeur par défaut mais explicite dans R); compute_tSnowmelt p1=0.1 p2=0.9
+Flow/Baseflow/criteria/delta-endBF_H.R,Flow/Baseflow/criteria/delta-endBF_H.yaml,done,high,P1.is_date=true encodé dans tuple; compute_tVolSnowmelt p=0.9
+Flow/Baseflow/criteria/delta-startBF_H.R,Flow/Baseflow/criteria/delta-startBF_H.yaml,done,high,P1.is_date=true encodé dans tuple; compute_tVolSnowmelt p=0.1
+Flow/Baseflow/criteria/delta-vBF_H.R,Flow/Baseflow/criteria/delta-vBF_H.yaml,done,medium,to_normalise=true inclus dans kwargs (valeur par défaut mais explicite dans R); compute_VolSnowmelt
+Flow/Baseflow/criteria/median-centerBF.R,Flow/Baseflow/criteria/median-centerBF.yaml,done,high,P1 is_date=true en tuple; P2 circular_median avec periodicity=365.25
+Flow/Baseflow/criteria/median-dtBF.R,Flow/Baseflow/criteria/median-dtBF.yaml,done,high,is_date/to_normalise omis (défauts); P2 median simple
+Flow/Baseflow/criteria/median-dtRec.R,Flow/Baseflow/criteria/median-dtRec.yaml,skipped,-,fiche instable; YAML supprimé
+Flow/Baseflow/criteria/median-endBF.R,Flow/Baseflow/criteria/median-endBF.yaml,done,high,P1 is_date=true en tuple; P2 circular_median
+Flow/Baseflow/criteria/median-startBF.R,Flow/Baseflow/criteria/median-startBF.yaml,done,high,P1 is_date=true en tuple; P2 circular_median
+Flow/Baseflow/criteria/median-vBF.R,Flow/Baseflow/criteria/median-vBF.yaml,done,medium,typo source R: method_fr dit "moyenne" au lieu de "médiane" - corrigé via linter
+Flow/Baseflow/serie/BF-LH.R,Flow/Baseflow/serie/BF-LH.yaml,done,high,to_normalise=false; pas de source ni preferred_sampling_period
+Flow/Baseflow/serie/centerBF.R,Flow/Baseflow/serie/centerBF.yaml,done,high,is_date=true en tuple; palette saisonnalité
+Flow/Baseflow/serie/dtBF.R,Flow/Baseflow/serie/dtBF.yaml,done,high,is_date/to_normalise omis (défauts); palette verte
+Flow/Baseflow/serie/dtRec.R,Flow/Baseflow/serie/dtRec.yaml,skipped,-,fiche instable; YAML supprimé
+Flow/Baseflow/serie/endBF.R,Flow/Baseflow/serie/endBF.yaml,done,high,is_date=true; compute_tVolSnowmelt p=0.9 method=Wal; source TALLAKSEN; to_normalise=false
+Flow/Baseflow/serie/startBF.R,Flow/Baseflow/serie/startBF.yaml,done,high,is_date=true; compute_tVolSnowmelt p=0.1 method=Wal; source TALLAKSEN; to_normalise=false
+Flow/Baseflow/serie/vBF.R,Flow/Baseflow/serie/vBF.yaml,done,high,compute_VolSnowmelt method=Wal; source TALLAKSEN
+Flow/High_Flows/criteria/alpha-QJXA.R,Flow/High_Flows/criteria/alpha-QJXA.yaml,done,high,to_normalise=[true,false]; source multi-citation (Kendall/Mann/Sen); P2 deux fonctions get_MKalpha/get_MKH
+Flow/High_Flows/criteria/delta-dtFlood_H.R,Flow/High_Flows/criteria/delta-dtFlood_H.yaml,done,high,5-step process; P1 dBFS time_step=none; P3 divided numérique positionnel [2]; P4 apply_threshold select=dQXA
+Flow/High_Flows/criteria/delta-fQ01A_H.R,Flow/High_Flows/criteria/delta-fQ01A_H.yaml,done,high,P1 lowLim time_step=none keep=all; P2 compute_fAp {lowLim: lowLim} adaptive min; P3 get_deltaX
+Flow/High_Flows/criteria/delta-fQ05A_H.R,Flow/High_Flows/criteria/delta-fQ05A_H.yaml,done,high,P1 lowLim time_step=none keep=all; P2 compute_fAp {lowLim: lowLim} adaptive min; P3 get_deltaX
+Flow/High_Flows/criteria/delta-fQ10A_H.R,Flow/High_Flows/criteria/delta-fQ10A_H.yaml,done,high,P1 lowLim time_step=none keep=all; P2 compute_fAp {lowLim: lowLim} adaptive min; P3 get_deltaX
+Flow/High_Flows/criteria/delta-Q01A_H.R,Flow/High_Flows/criteria/delta-Q01A_H.yaml,done,high,sampling_period calendaire [01-01, 12-31]; preferred_sampling_period=01-01
+Flow/High_Flows/criteria/delta-Q05A_H.R,Flow/High_Flows/criteria/delta-Q05A_H.yaml,done,high,sampling_period calendaire [01-01, 12-31]; preferred_sampling_period=01-01
+Flow/High_Flows/criteria/delta-Q10A_H.R,Flow/High_Flows/criteria/delta-Q10A_H.yaml,done,high,sampling_period calendaire [01-01, 12-31]; preferred_sampling_period=01-01
+Flow/High_Flows/criteria/delta-QJXA-10_H.R,Flow/High_Flows/criteria/delta-QJXA-10_H.yaml,done,high,kwargs returnPeriod=10 waterType=high dans get_deltaX; adaptive min; ANOMALIE: topic_fr contient Intensity en anglais
+Flow/High_Flows/criteria/delta-QJXA_H.R,Flow/High_Flows/criteria/delta-QJXA_H.yaml,done,high,adaptive min; to_normalise=true dans kwargs get_deltaX
+Flow/High_Flows/criteria/delta-tQJXA_H.R,Flow/High_Flows/criteria/delta-tQJXA_H.yaml,done,high,is_date=true; to_normalise=false; which.maxNA avec true en fin de tuple; adaptive min
+Flow/High_Flows/criteria/delta-tVCX10_H.R,Flow/High_Flows/criteria/delta-tVCX10_H.yaml,done,high,3 étapes; P1 rollmean_center k=10 none; P2 which.maxNA true adaptive; P3 get_deltaX to_normalise=false
+Flow/High_Flows/criteria/delta-tVCX3_H.R,Flow/High_Flows/criteria/delta-tVCX3_H.yaml,done,high,3 étapes; P1 rollmean_center k=3 none; P2 which.maxNA true adaptive; P3 get_deltaX to_normalise=false
+Flow/High_Flows/criteria/delta-VCX10_H.R,Flow/High_Flows/criteria/delta-VCX10_H.yaml,done,high,3 étapes; P1 rollmean_center k=10; P2 maxNA adaptive; P3 get_deltaX; ANOMALIE: method_en dit 3-day au lieu de 10-day
+Flow/High_Flows/criteria/delta-VCX3_H.R,Flow/High_Flows/criteria/delta-VCX3_H.yaml,done,high,3 étapes; P1 rollmean_center k=3; P2 maxNA adaptive; P3 get_deltaX to_normalise=true
+Flow/High_Flows/criteria/median-dtFlood.R,Flow/High_Flows/criteria/median-dtFlood.yaml,done,high,5 étapes; dBFS sans kwargs; divided positionnel 2; apply_threshold select=dQXA; variable fr=mediane-dtCrue
+Flow/High_Flows/criteria/median-tQJXA.R,Flow/High_Flows/criteria/median-tQJXA.yaml,done,high,circular_median avec periodicity=365.25; is_date=true; to_normalise=false; variable fr=mediane-tQJXA
+Flow/High_Flows/criteria/n-QJXA-10_H.R,Flow/High_Flows/criteria/n-QJXA-10_H.yaml,done,medium,get_Xn avec Date et period=$H0; apply_threshold avec Date period=$H1/2/3; lim=QJXA-10_H0 sans guillemets; select=all
+Flow/High_Flows/criteria/Q10.R,Flow/High_Flows/criteria/Q10.yaml,done,high,fiche simple; time_step=none; pas de sampling_period ni palette
+Flow/High_Flows/criteria/QJXA-10.R,Flow/High_Flows/criteria/QJXA-10.yaml,done,high,get_Xn sans Date ni period; 2 étapes; adaptive min
+Flow/High_Flows/serie/dtFlood.R,Flow/High_Flows/serie/dtFlood.yaml,done,high,4 étapes identiques à median-dtFlood sans le P5; variable fr=dtCrue
+Flow/High_Flows/serie/fQ01A.R,Flow/High_Flows/serie/fQ01A.yaml,done,high,to_normalise=false; compute_Qp p=0.01; compute_fAp {lowLim: lowLim}; adaptive min
+Flow/High_Flows/serie/fQ05A.R,Flow/High_Flows/serie/fQ05A.yaml,done,high,to_normalise=false; compute_Qp p=0.05; compute_fAp {lowLim: lowLim}; adaptive min
+Flow/High_Flows/serie/fQ10A.R,Flow/High_Flows/serie/fQ10A.yaml,done,high,to_normalise=false; compute_Qp p=0.1; compute_fAp {lowLim: lowLim}; adaptive min
+Flow/High_Flows/serie/Q01A.R,Flow/High_Flows/serie/Q01A.yaml,done,high,sampling_period [01-01,12-31]; compute_Qp p=0.01; preferred_sampling_period=01-01
+Flow/High_Flows/serie/Q05A.R,Flow/High_Flows/serie/Q05A.yaml,done,high,sampling_period [01-01,12-31]; compute_Qp p=0.05; preferred_sampling_period=01-01
+Flow/High_Flows/serie/Q10A.R,Flow/High_Flows/serie/Q10A.yaml,done,high,sampling_period [01-01,12-31]; compute_Qp p=0.1; preferred_sampling_period=01-01
+Flow/High_Flows/serie/QJXA.R,Flow/High_Flows/serie/QJXA.yaml,done,high,fiche simple; adaptive min; pas d'anomalie
+Flow/High_Flows/serie/tQJXA.R,Flow/High_Flows/serie/tQJXA.yaml,done,high,is_date=true; to_normalise=false; which.maxNA true; adaptive min
+Flow/High_Flows/serie/tVCX10.R,Flow/High_Flows/serie/tVCX10.yaml,done,high,2 étapes; rollmean_center k=10; which.maxNA true; adaptive min
+Flow/High_Flows/serie/tVCX3.R,Flow/High_Flows/serie/tVCX3.yaml,done,high,2 étapes; rollmean_center k=3; which.maxNA true; adaptive min
+Flow/High_Flows/serie/VCX10.R,Flow/High_Flows/serie/VCX10.yaml,done,high,ANOMALIE corrigée: method_en step 1 "3-day"→"10-day"; name_en en Title Case (signalé non corrigé)
+Flow/High_Flows/serie/VCX3.R,Flow/High_Flows/serie/VCX3.yaml,done,high,name_en en Title Case (signalé non corrigé)
+Flow/Low_Flows/serie/allLF.R,Flow/Low_Flows/serie/allLF.yaml,done,medium,fiche multi-var (5 vars); topic_en vide dans R → rempli depuis topics FR; palette = liste de 5 palettes (nouveau pattern); parenthèse manquante méthodes FR dtBE/vBE corrigée
+Flow/Low_Flows/serie/centerLF.R,Flow/Low_Flows/serie/centerLF.yaml,done,high,is_date=true; to_normalise=false; P4 which.minNA
+Flow/Low_Flows/serie/endLF.R,Flow/Low_Flows/serie/endLF.yaml,done,high,is_date=true; to_normalise=false; P4 what=last
+Flow/Low_Flows/serie/Q90A.R,Flow/Low_Flows/serie/Q90A.yaml,done,high,compute_Qp p=0.9; sampling_period [01-01,12-31]; name_fr "dépassée"→"dépassé"
+Flow/Low_Flows/serie/Q95A.R,Flow/Low_Flows/serie/Q95A.yaml,done,high,compute_Qp p=0.95; name_fr "dépassée"→"dépassé"; description_en "a exceedance"→"an exceedance"
+Flow/Low_Flows/serie/Q99A.R,Flow/Low_Flows/serie/Q99A.yaml,done,high,compute_Qp p=0.99; name_fr "dépassée"→"dépassé"; "1th"→"1st" percentile
+Flow/Low_Flows/serie/QMNA.R,Flow/Low_Flows/serie/QMNA.yaml,done,high,P1 time_step=year-month; P2 adaptive sur QMA (pas Q); to_normalise=true (défaut)
+Flow/Low_Flows/serie/QNA.R,Flow/Low_Flows/serie/QNA.yaml,done,high,to_normalise=false; method vide; adaptive sur Q
+Flow/Low_Flows/serie/startLF.R,Flow/Low_Flows/serie/startLF.yaml,done,high,is_date=true; to_normalise=false; P4 what=first
+Flow/Low_Flows/serie/tVCN10.R,Flow/Low_Flows/serie/tVCN10.yaml,done,high,is_date=true; to_normalise=false; P2 which.minNA sans kwargs → [which.minNA,"VC10",true]
+Flow/Low_Flows/serie/VCN10.R,Flow/Low_Flows/serie/VCN10.yaml,done,high,NAyear_lim=10 dans P1 (pas P2) — inhabituel; to_normalise=true (défaut)
+Flow/Low_Flows/serie/VCN30.R,Flow/Low_Flows/serie/VCN30.yaml,done,high,idem VCN10 avec k=30; VC30
+Flow/Low_Flows/serie/VCN3.R,Flow/Low_Flows/serie/VCN3.yaml,done,high,idem VCN10 avec k=3; VC3
+Flow/Low_Flows/serie/vLF.R,Flow/Low_Flows/serie/vLF.yaml,done,high,name_fr "déficite"→"déficit"; method_fr `)` manquante après VCN10 corrigée; compute_VolDef {select: longest, upLim: upLim}
+Flow/Low_Flows/criteria/alpha-VCN10.R,Flow/Low_Flows/criteria/alpha-VCN10.yaml,done,medium,ANOMALIE EN massive: name/description/method_en copiés de centerBF — corrigés depuis FR; topic_en "Flow,Baseflow,Seasonality"→"Flow,Low Flows,Intensity"; to_normalise=[true,false]; source MK+Sen; NAyear_lim dans P1
+Flow/Low_Flows/criteria/delta-allLF_H.R,Flow/Low_Flows/criteria/delta-allLF_H.yaml,done,medium,15 vars (5×3 horizons); bug R "\n2."→"\n5." dans methods corrigé; palette liste×15; to_normalise=false explicite pour tous en P5 (y compris vLF malgré CARD$P.to_normalise=TRUE — anomalie R signalée); méthodes FR `)` manquantes corrigées; "End"→"end" corrigé
+Flow/Low_Flows/criteria/delta-centerLF_H.R,Flow/Low_Flows/criteria/delta-centerLF_H.yaml,done,high,5 étapes; is_date=true; to_normalise=false explicite en kwargs P5; template {horizon}
+Flow/Low_Flows/criteria/delta-dtLF_H.R,Flow/Low_Flows/criteria/delta-dtLF_H.yaml,done,high,5 étapes; to_normalise=false; method_fr `)` manquante corrigée; template {horizon}
+Flow/Low_Flows/criteria/delta-Q90A_H.R,Flow/Low_Flows/criteria/delta-Q90A_H.yaml,done,high,2 étapes; to_normalise=true explicite en kwargs P2; name_fr "dépassée"→"dépassé"
+Flow/Low_Flows/criteria/delta-Q95A_H.R,Flow/Low_Flows/criteria/delta-Q95A_H.yaml,done,high,2 étapes; to_normalise=true explicite en kwargs P2; name_fr "dépassée"→"dépassé"; description_en "a exceedance"→"an exceedance"
+Flow/Low_Flows/criteria/delta-Q99A_H.R,Flow/Low_Flows/criteria/delta-Q99A_H.yaml,done,high,2 étapes; to_normalise=true explicite en kwargs P2; name_fr "dépassée"→"dépassé"; "1th"→"1st"; "a exceedance"→"an exceedance"
+Flow/Low_Flows/criteria/delta-QNA_H.R,Flow/Low_Flows/criteria/delta-QNA_H.yaml,done,high,topic_en "Flow,Low Water,Intensity"→"Flow,Low Flows,Intensity"; to_normalise=false; method vide EN et FR; adaptive sur Q
+Flow/Low_Flows/criteria/delta-QMNA_H.R,Flow/Low_Flows/criteria/delta-QMNA_H.yaml,done,high,3 étapes; P1 year-month keep=all; P2 adaptive sur QMA; topic_en "Flow,Low Flow,Intensity"→"Flow,Low Flows,Intensity"; to_normalise=true explicite; template {horizon}
+Flow/Low_Flows/criteria/delta-startLF_H.R,Flow/Low_Flows/criteria/delta-startLF_H.yaml,done,high,5 étapes; is_date=true; to_normalise=false; ANOMALIE R method_en "4." répété deux fois → corrigé en "5." pour la dernière étape; variable_fr delta-debutBE_H; template {horizon}
+Flow/Low_Flows/criteria/delta-tVCN10_H.R,Flow/Low_Flows/criteria/delta-tVCN10_H.yaml,done,high,3 étapes; is_date=true; to_normalise=false; P2 [which.minNA,"VC10",true] sans kwargs; NAyear_lim dans P2; template {horizon}
+Flow/Low_Flows/criteria/delta-VCN10-5_H.R,Flow/Low_Flows/criteria/delta-VCN10-5_H.yaml,done,high,3 étapes; NAyear_lim dans P1; P3 returnPeriod=5 waterType="low" to_normalise=true; palette=null (omis); template {horizon}
+Flow/Low_Flows/criteria/delta-VCN10_H.R,Flow/Low_Flows/criteria/delta-VCN10_H.yaml,done,high,3 étapes; NAyear_lim dans P1; to_normalise=true explicite en P3; template {horizon}
+Flow/Low_Flows/criteria/delta-VCN30_H.R,Flow/Low_Flows/criteria/delta-VCN30_H.yaml,done,high,idem delta-VCN10_H avec k=30; VC30/VCN30
+Flow/Low_Flows/criteria/delta-VCN3_H.R,Flow/Low_Flows/criteria/delta-VCN3_H.yaml,done,high,idem delta-VCN10_H avec k=3; VC3/VCN3
+Flow/Low_Flows/criteria/delta-vLF_H.R,Flow/Low_Flows/criteria/delta-vLF_H.yaml,done,high,5 étapes; to_normalise=true explicite en P5; name_fr "déficite"→"déficit"; description_fr "entre de la"→"entre la"; method_fr `)` manquante step 2 corrigée; variable_fr delta-vBE_H
+Flow/Low_Flows/criteria/median-allLF.R,Flow/Low_Flows/criteria/median-allLF.yaml,done,medium,bundle 5 vars; is_date=[T,T,T,F,F]; to_normalise=[F,F,F,F,T]; true en fin de tuple pour startLF/centerLF/endLF en P4; description_fr centreBE "des date"→"des dates"; description/name_fr vBE "entre de la"→"entre la"/"déficite"→"déficit"; method_fr dtBE+vBE step 2 `)` manquante corrigée
+Flow/Low_Flows/criteria/median-dtLF.R,Flow/Low_Flows/criteria/median-dtLF.yaml,done,high,5 étapes; to_normalise=false; is_date=false (défaut omis); pas d'anomalie
+Flow/Low_Flows/criteria/median-finLF.R,Flow/Low_Flows/criteria/median-finLF.yaml,done,high,is_date=true; to_normalise=false; ANOMALIE R method_fr step 4 saut de ligne en pleine phrase — joint dans le YAML
+Flow/Low_Flows/criteria/median-startLF.R,Flow/Low_Flows/criteria/median-startLF.yaml,done,high,is_date=true; to_normalise=false; ANOMALIE R method_fr step 2 "des des VCN10"→"des VCN10" (doublon)
+Flow/Low_Flows/criteria/median-tVCN10.R,Flow/Low_Flows/criteria/median-tVCN10.yaml,done,high,is_date=true; to_normalise=false; NAyear_lim dans P1; which.minNA sans kwargs → [which.minNA,"VC10",true]; ANOMALIE R topic_en "Low Flow"→"Low Flows"
+Flow/Low_Flows/criteria/median-vLF.R,Flow/Low_Flows/criteria/median-vLF.yaml,done,high,to_normalise=true (défaut omis); ANOMALIE R ×4: name_fr "déficite"→"déficit"; description_fr "entre de la"→"entre la"; method_fr step 2 `)` manquante; topic_en "Low Flow"→"Low Flows"
+Flow/Low_Flows/criteria/n-VCN10-5_H.R,Flow/Low_Flows/criteria/n-VCN10-5_H.yaml,done,medium,3 horizons; {horizon} template; get_Xn returnPeriod=5 waterType="low" Date+period=$H0; apply_threshold Date+period=$Hx; lim=VCN10-5_H0 sans guillemets; ANOMALIE R sampling_period "minimum"→"maximum" corrigé; P2 output n-VCN10 vs P3/P4 lisent "VCN10" (bug R signalé traduit fidèlement)
+Flow/Low_Flows/criteria/Q90.R,Flow/Low_Flows/criteria/Q90.yaml,done,high,fiche simple; time_step=none; NAyear_lim=10; ANOMALIE R name_fr "dépassée"→"dépassé"
+Flow/Low_Flows/criteria/QMNA-5.R,Flow/Low_Flows/criteria/QMNA-5.yaml,done,high,3 étapes; P1 year-month; P2 adaptive sur QMA (pas Q); get_Xn returnPeriod=5 waterType="low"; ANOMALIE R topic_en "Low Flow"→"Low Flows"
+Flow/Low_Flows/criteria/VCN10-5.R,Flow/Low_Flows/criteria/VCN10-5.yaml,done,high,3 étapes; NAyear_lim dans P1; P3 get_Xn returnPeriod=5 waterType="low"; pas d'anomalie
+Flow/Low_Flows/criteria/VCN30-2.R,Flow/Low_Flows/criteria/VCN30-2.yaml,done,high,3 étapes; NAyear_lim dans P1; P3 get_Xn returnPeriod=2 waterType="low"; analogue à VCN10-5 avec k=30; pas d'anomalie
+Flow/Low_Flows_Summer/serie/QMNA_summer.R,Flow/Low_Flows_Summer/serie/QMNA_summer.yaml,done,high,P1 year-month; P2 fenêtre fixe 05-01/11-30; palette standard; ANOMALIE R topic_en "Low Flow"→"Low Flows"
+Flow/Low_Flows_Summer/serie/QNA_summer.R,Flow/Low_Flows_Summer/serie/QNA_summer.yaml,done,high,1 étape; fenêtre fixe 05-01/11-30; to_normalise=false; method vide; palette standard; ANOMALIE R topic_en "Low Water"→"Low Flows"
+Flow/Low_Flows_Summer/serie/allLF_summer.R,Flow/Low_Flows_Summer/serie/allLF_summer.yaml,done,medium,bundle 5 vars; is_date=[T,T,T,F,F]; to_normalise=[F,F,F,F,T]; fenêtre fixe 05-01/11-30; palette 3 violet+2 vert; description_fr vBE_été "entre de la"→"entre la"; method_fr dtBE_été+vBE_été step 2 `)` manquante
+Flow/Low_Flows_Summer/serie/tVCN10_summer.R,Flow/Low_Flows_Summer/serie/tVCN10_summer.yaml,done,high,is_date=true; to_normalise=false; which.minNA sans kwargs; fenêtre fixe 05-01/11-30; description non vide; palette violette; pas d'anomalie
+Flow/Low_Flows_Summer/serie/VCN10_summer.R,Flow/Low_Flows_Summer/serie/VCN10_summer.yaml,done,high,NAyear_lim dans P1; fenêtre fixe 05-01/11-30; palette standard; pas d'anomalie
+Flow/Low_Flows_Summer/serie/VCN30_summer.R,Flow/Low_Flows_Summer/serie/VCN30_summer.yaml,done,high,idem VCN10_summer avec k=30; VC30_summer; pas d'anomalie
+Flow/Low_Flows_Summer/serie/VCN3_summer.R,Flow/Low_Flows_Summer/serie/VCN3_summer.yaml,done,high,idem VCN10_summer avec k=3; VC3_summer; pas d'anomalie
+Flow/Low_Flows_Summer/criteria/delta-QMNA_summer_H.R,Flow/Low_Flows_Summer/criteria/delta-QMNA_summer_H.yaml,done,high,3 horizons; P1 year-month; P2 fenêtre fixe; to_normalise=true explicite; palette standard; ANOMALIE R topic_en "Low Flow"→"Low Flows"
+Flow/Low_Flows_Summer/criteria/delta-QNA_summer_H.R,Flow/Low_Flows_Summer/criteria/delta-QNA_summer_H.yaml,done,high,3 horizons; 2 étapes; to_normalise=false; method vide; palette standard; ANOMALIE R topic_en "Low Water"→"Low Flows"
+Flow/Low_Flows_Summer/criteria/delta-tVCN10_summer_H.R,Flow/Low_Flows_Summer/criteria/delta-tVCN10_summer_H.yaml,done,high,3 horizons; is_date=true; to_normalise=false; which.minNA sans kwargs; description non vide; palette violette; pas d'anomalie
+Flow/Low_Flows_Summer/criteria/delta-VCN10_summer_H.R,Flow/Low_Flows_Summer/criteria/delta-VCN10_summer_H.yaml,done,high,3 horizons; NAyear_lim dans P1; to_normalise=true explicite; palette standard; pas d'anomalie
+Flow/Low_Flows_Summer/criteria/delta-VCN30_summer_H.R,Flow/Low_Flows_Summer/criteria/delta-VCN30_summer_H.yaml,done,high,idem delta-VCN10_summer_H avec k=30; pas d'anomalie
+Flow/Low_Flows_Summer/criteria/delta-VCN3_summer_H.R,Flow/Low_Flows_Summer/criteria/delta-VCN3_summer_H.yaml,done,high,idem delta-VCN10_summer_H avec k=3; VC3_summer; pas d'anomalie
+Flow/Low_Flows_Summer/criteria/delta-allLF_summer_H.R,Flow/Low_Flows_Summer/criteria/delta-allLF_summer_H.yaml,done,medium,bundle 15 vars (5×3 horizons); P5 to_normalise=false pour toutes (anomalie potentielle vLF_summer); palette liste×15; bug R "\n2."→"\n5." corrigé; "the End"→"the end" corrigé; description_fr vBE_été "entre de la"→"entre la"; method_fr dtBE_été+vBE_été step 2 `)` manquante corrigée
+Flow/Low_Flows_Winter/serie/QMNA_winter.R,Flow/Low_Flows_Winter/serie/QMNA_winter.yaml,done,high,P1 year-month; P2 fenêtre fixe 11-01/04-30; palette standard; ANOMALIE R topic_en "Low Flow"→"Low Flows"
+Flow/Low_Flows_Winter/serie/QNA_winter.R,Flow/Low_Flows_Winter/serie/QNA_winter.yaml,done,high,1 étape; fenêtre fixe 11-01/04-30; to_normalise=false; method vide; palette standard; ANOMALIE R topic_en "Low Water"→"Low Flows"
+Flow/Low_Flows_Winter/serie/VCN10_winter.R,Flow/Low_Flows_Winter/serie/VCN10_winter.yaml,done,high,NAyear_lim dans P1; fenêtre fixe 11-01/04-30; palette standard; pas d'anomalie
+Flow/Low_Flows_Winter/serie/VCN30_winter.R,Flow/Low_Flows_Winter/serie/VCN30_winter.yaml,done,high,idem VCN10_winter avec k=30; VC30_winter; pas d'anomalie
+Flow/Low_Flows_Winter/serie/VCN3_winter.R,Flow/Low_Flows_Winter/serie/VCN3_winter.yaml,done,high,idem VCN10_winter avec k=3; VC3_winter; pas d'anomalie
+Flow/Low_Flows_Winter/serie/tVCN10_winter.R,Flow/Low_Flows_Winter/serie/tVCN10_winter.yaml,done,high,is_date=true; to_normalise=false; which.minNA sans kwargs; fenêtre fixe 11-01/04-30; NAyear_lim dans P2; palette violette; description "Months from November to April"; pas d'anomalie
+Flow/Low_Flows_Winter/serie/allLF_winter.R,Flow/Low_Flows_Winter/serie/allLF_winter.yaml,done,medium,bundle 5 vars; is_date=[T,T,T,F,F]; to_normalise=[F,F,F,F,T]; fenêtre fixe 11-01/04-30; palette 3 violet+2 vert; ANOMALIE R description_fr vBE_hiver "entre de la"→"entre la"; ANOMALIE R method_fr dtBE_hiver+vBE_hiver step 2 `)` manquante
+Flow/Low_Flows_Winter/criteria/delta-QMNA_winter_H.R,Flow/Low_Flows_Winter/criteria/delta-QMNA_winter_H.yaml,done,high,3 horizons; P1 year-month; P2 fenêtre fixe 11-01/04-30; to_normalise=true explicite; palette standard; ANOMALIE R topic_en "Low Flow"→"Low Flows"
+Flow/Low_Flows_Winter/criteria/delta-QNA_winter_H.R,Flow/Low_Flows_Winter/criteria/delta-QNA_winter_H.yaml,done,high,3 horizons; 2 étapes; to_normalise=false; method vide; ANOMALIE R topic_en "Low Water"→"Low Flows"
+Flow/Low_Flows_Winter/criteria/delta-tVCN10_winter_H.R,Flow/Low_Flows_Winter/criteria/delta-tVCN10_winter_H.yaml,done,high,3 horizons; 3 étapes; is_date=true; to_normalise=false; which.minNA sans kwargs; NAyear_lim dans P2; palette violette; description non vide; pas d'anomalie
+Flow/Low_Flows_Winter/criteria/delta-VCN10_winter_H.R,Flow/Low_Flows_Winter/criteria/delta-VCN10_winter_H.yaml,done,high,3 horizons; 3 étapes; NAyear_lim dans P1; to_normalise=true explicite; palette standard; pas d'anomalie
+Flow/Low_Flows_Winter/criteria/delta-VCN30_winter_H.R,Flow/Low_Flows_Winter/criteria/delta-VCN30_winter_H.yaml,done,high,idem delta-VCN10_winter_H avec k=30; pas d'anomalie
+Flow/Low_Flows_Winter/criteria/delta-VCN3_winter_H.R,Flow/Low_Flows_Winter/criteria/delta-VCN3_winter_H.yaml,done,high,idem delta-VCN10_winter_H avec k=3; pas d'anomalie
+Flow/Low_Flows_Winter/criteria/delta-allLF_winter_H.R,Flow/Low_Flows_Winter/criteria/delta-allLF_winter_H.yaml,done,medium,bundle 15 vars (5×3 horizons); P5 to_normalise=false pour toutes (anomalie potentielle vLF_winter); palette liste×15; bug R "\n2."→"\n5." corrigé; "the End"→"the end" corrigé; description_fr vBE_hiver "entre de la"→"entre la"; method_fr dtBE_hiver+vBE_hiver step 2 `)` manquante corrigée
+Flow/Mean_Flows/serie/QA.R,Flow/Mean_Flows/serie/QA.yaml,done,high,fiche référence; sampling_period "09-01" (string); pas d'anomalie
+Flow/Mean_Flows/serie/Q25A.R,Flow/Mean_Flows/serie/Q25A.yaml,done,high,compute_Qp p=0.25; sampling_period ["01-01","12-31"]; pas d'anomalie
+Flow/Mean_Flows/serie/Q50A.R,Flow/Mean_Flows/serie/Q50A.yaml,done,high,compute_Qp p=0.5 (médiane); pas d'anomalie
+Flow/Mean_Flows/serie/Q75A.R,Flow/Mean_Flows/serie/Q75A.yaml,done,high,compute_Qp p=0.75; ANOMALIE R method_fr "probabilité au dépassement"→"probabilité de dépassement"
+Flow/Mean_Flows/serie/QJC10.R,Flow/Mean_Flows/serie/QJC10.yaml,done,medium,2 étapes; P1 time_step=yearday; rollmean_center isCyclical=true; keep=[QJC10]; ANOMALIE R P1 utilise "Q_obs" au lieu de "Q" (input_vars=Q); pas de sampling_period ni preferred_sampling_period ni palette
+Flow/Mean_Flows/serie/QMA_month.R,Flow/Mean_Flows/serie/QMA_month.yaml,done,high,bundle 12 vars (un par mois); P1 year-month compress=true; sampling_period 12 listes; palette standard; pas de preferred_sampling_period
+Flow/Mean_Flows/serie/QSA_JJASO.R,Flow/Mean_Flows/serie/QSA_JJASO.yaml,done,high,1 étape; fenêtre fixe 06-01/10-31; palette standard; pas de preferred_sampling_period
+Flow/Mean_Flows/serie/QSA_season.R,Flow/Mean_Flows/serie/QSA_season.yaml,done,high,bundle 4 vars (saisons); P1 year-season Seasons=[DJF,MAM,JJA,SON] compress=true; sampling_period 4 listes; palette standard; pas de preferred_sampling_period
+Flow/Mean_Flows/serie/FDC.R,Flow/Mean_Flows/serie/FDC.yaml,done,high,2 sorties P1 (FDC_p sans colonne + FDC_Q avec "Q"); time_step=none; palette=NULL; ANOMALIE R topic_en "Mean Flows Intensity" (virgule manquante)→"Mean Flows, Intensity"
+Flow/Mean_Flows/serie/FDC_H0.R,Flow/Mean_Flows/serie/FDC_H0.yaml,done,high,idem FDC avec period=["1976-01-01","2005-08-31"]; variable EN=FDC_H0 / FR=CDC_H0; ANOMALIE R topic_en même virgule manquante
+Flow/Mean_Flows/serie/FDC_H1.R,Flow/Mean_Flows/serie/FDC_H1.yaml,done,high,idem FDC_H0 avec period H1=["2021-01-01","2050-12-31"]; variable EN=FDC_H1/FR=CDC_H1; ANOMALIE R topic_en virgule manquante
+Flow/Mean_Flows/serie/FDC_H2.R,Flow/Mean_Flows/serie/FDC_H2.yaml,done,high,idem FDC_H0 avec period H2=["2041-01-01","2070-12-31"]; ANOMALIE R topic_en virgule manquante
+Flow/Mean_Flows/serie/FDC_H3.R,Flow/Mean_Flows/serie/FDC_H3.yaml,done,high,idem FDC_H0 avec period H3=["2070-01-01","2099-12-31"]; ANOMALIE R topic_en virgule manquante
+Flow/Mean_Flows/serie/median-QJ.R,Flow/Mean_Flows/serie/median-QJ.yaml,done,high,time_step=yearday; variable EN=median-QJ/FR=mediane-QJ; NApct_lim=NULL+NAyear_lim=NULL (omis); palette=NULL; pas d'anomalie
+Flow/Mean_Flows/serie/median-QJ_H0.R,Flow/Mean_Flows/serie/median-QJ_H0.yaml,done,high,idem median-QJ avec period H0=["1976-01-01","2005-08-31"]; variable mediane-QJ_H0 en FR; pas d'anomalie
+Flow/Mean_Flows/serie/median-QJ_H1.R,Flow/Mean_Flows/serie/median-QJ_H1.yaml,done,high,idem median-QJ avec period H1=["2021-01-01","2050-12-31"]; pas d'anomalie
+Flow/Mean_Flows/serie/median-QJ_H2.R,Flow/Mean_Flows/serie/median-QJ_H2.yaml,done,high,idem median-QJ avec period H2=["2041-01-01","2070-12-31"]; pas d'anomalie
+Flow/Mean_Flows/serie/median-QJ_H3.R,Flow/Mean_Flows/serie/median-QJ_H3.yaml,done,high,idem median-QJ avec period H3=["2070-01-01","2099-12-31"]; pas d'anomalie
+Flow/Mean_Flows/serie/QM.R,Flow/Mean_Flows/serie/QM.yaml,done,high,time_step=month; NApct_lim=3; NAyear_lim=10; palette=NULL; pas d'anomalie
+Flow/Mean_Flows/serie/QM_H0.R,Flow/Mean_Flows/serie/QM_H0.yaml,done,high,idem QM avec period H0=["1976-01-01","2005-08-31"]; NApct/NAyear=NULL (omis); pas d'anomalie
+Flow/Mean_Flows/serie/QM_H1.R,Flow/Mean_Flows/serie/QM_H1.yaml,done,high,idem QM avec period H1=["2021-01-01","2050-12-31"]; NApct/NAyear=NULL (omis); pas d'anomalie
+Flow/Mean_Flows/serie/QM_H2.R,Flow/Mean_Flows/serie/QM_H2.yaml,done,high,idem QM avec period H2=["2041-01-01","2070-12-31"]; NApct/NAyear=NULL (omis); pas d'anomalie
+Flow/Mean_Flows/serie/QM_H3.R,Flow/Mean_Flows/serie/QM_H3.yaml,done,high,idem QM avec period H3=["2070-01-01","2099-12-31"]; NApct/NAyear=NULL (omis); pas d'anomalie
+Flow/Mean_Flows/criteria/Q50.R,Flow/Mean_Flows/criteria/Q50.yaml,done,high,time_step=none; NAyear_lim=10; pas de sampling_period; compute_Qp p=0.5
+Flow/Mean_Flows/criteria/a-FDC.R,Flow/Mean_Flows/criteria/a-FDC.yaml,done,high,variable EN=a-FDC / FR=a-CDC; fdc_slope avec {p:[0.33,0.66]}; time_step=none; NAyear_lim=10; pas d'anomalie
+Flow/Mean_Flows/criteria/mean-QA.R,Flow/Mean_Flows/criteria/mean-QA.yaml,done,high,"variable FR=moyenne-QA; topic_en 'Average Waters'→'Mean Flows' corrigé (anomalie R); P2 mean/none"
+Flow/Mean_Flows/criteria/alpha-QA.R,Flow/Mean_Flows/criteria/alpha-QA.yaml,done,high,to_normalise=[true,false]; source 3 citations; P2 get_MKalpha+get_MKH avec level=0.1
+Flow/Mean_Flows/criteria/delta-QA_H.R,Flow/Mean_Flows/criteria/delta-QA_H.yaml,done,high,3 horizons; P1 mean/year 09-01; P2 get_deltaX to_normalise=true; palette standard
+Flow/Mean_Flows/criteria/delta-Q25A_H.R,Flow/Mean_Flows/criteria/delta-Q25A_H.yaml,done,high,3 horizons; P1 compute_Qp p=0.25; sampling_period=01-01; palette standard
+Flow/Mean_Flows/criteria/delta-Q50A_H.R,Flow/Mean_Flows/criteria/delta-Q50A_H.yaml,done,high,3 horizons; P1 compute_Qp p=0.5 (médiane); sampling_period=01-01; palette standard
+Flow/Mean_Flows/criteria/delta-Q75A_H.R,Flow/Mean_Flows/criteria/delta-Q75A_H.yaml,done,high,"method_fr 'probabilité au dépassement'→'de dépassement' corrigé (anomalie R); P1 compute_Qp p=0.75"
+Flow/Mean_Flows/criteria/delta-QSA_season_H.R,Flow/Mean_Flows/criteria/delta-QSA_season_H.yaml,done,high,"12 vars (4 saisons×3 horizons); P1 year-season + compress=true; 12 entrées P2; méthodes et sampling_period explicites"
+Flow/Mean_Flows/criteria/delta-QMA_month_H.R,Flow/Mean_Flows/criteria/delta-QMA_month_H.yaml,done,high,"36 vars (12 mois×3 horizons); P1 year-month + compress=true; 36 entrées P2; variable FR avec abbréviations FR (janv/fevr/...); method=''"
+Flow/Performance/Bias.R,Flow/Performance/Bias.yaml,done,high,"variable FR=Biais; input_vars=Q_obs,Q_sim; to_normalise=false; compute_Biais sans kwargs"
+Flow/Performance/Bias_season.R,Flow/Performance/Bias_season.yaml,done,high,"4 vars (DJF/MAM/JJA/SON); name_en MAM 'Autumn'→'Spring' et SON 'Winter'→'Autumn' corrigés (anomalie R); name_fr MAM 'automnal'→'printanier' et SON 'hivernal'→'automnal' corrigés; method_en dates DD-MM→MM-DD corrigées; time_step=season + compress"
+Flow/Performance/KGE.R,Flow/Performance/KGE.yaml,done,high,"variable EN=FR=KGE; source GUPTA; to_normalise=false; compute_KGE sans kwargs; method trailing '.'supprimé"
+Flow/Performance/KGEsqrt.R,Flow/Performance/KGEsqrt.yaml,done,high,"variable FR=KGEracine; source GUPTA; to_normalise=false; compute_KGEracine; description_fr point final ajouté"
+Flow/Performance/NSE.R,Flow/Performance/NSE.yaml,done,high,"variable EN=FR=NSE; source NASH; to_normalise=false; compute_NSE sans kwargs"
+Flow/Performance/NSEinv.R,Flow/Performance/NSEinv.yaml,done,high,"variable EN=FR=NSEinv; source NASH; to_normalise=false; compute_NSEi sans kwargs"
+Flow/Performance/NSElog.R,Flow/Performance/NSElog.yaml,done,high,"variable EN=FR=NSElog; source NASH; to_normalise=false; compute_NSElog sans kwargs"
+Flow/Performance/NSEsqrt.R,Flow/Performance/NSEsqrt.yaml,done,high,"variable FR=NSEracine; source NASH; to_normalise=false; compute_NSEracine sans kwargs"
+Flow/Performance/STD.R,Flow/Performance/STD.yaml,done,high,"variable EN=FR=STD; input_vars=Q_obs,Q_sim; to_normalise=true (défaut omis); compute_STD avec {skipna:true}"
+Precipitations/CR.R,Precipitations/CR.yaml,done,high,"input_vars=R_obs,R_sim; to_normalise=false; 3 étapes P1(sumNA/year)+P2(mean/none)+P3(divided/none); palette standard"
+Precipitations/CRS_season.R,Precipitations/CRS_season.yaml,done,high,"4 vars; sampling_period_fr SON '09-01,11-30'→'01-09,30-11' corrigé (anomalie R); 2 outputs P1 (RSA_obs+RSA_sim) + year-season + compress; P2 8 mean; P3 4 divided"
+Precipitations/dtCDDA.R,Precipitations/dtCDDA.yaml,done,high,"input_vars=R; to_normalise=false; apply_threshold lim=1 where='<' select=longest; palette verte"
+Precipitations/dtCDDMA_month.R,Precipitations/dtCDDMA_month.yaml,done,high,"12 vars; variable FR abbr FR; apply_threshold year-month compress; palette verte"
+Precipitations/dtCDDSA_season.R,Precipitations/dtCDDSA_season.yaml,done,high,"4 vars; apply_threshold year-season compress; palette verte"
+Precipitations/dtCWDA.R,Precipitations/dtCWDA.yaml,done,high,"input_vars=R; to_normalise=false; apply_threshold lim=1 where='>=' select=longest; palette standard"
+Precipitations/dtCWDMA_month.R,Precipitations/dtCWDMA_month.yaml,done,high,"12 vars; name_en='' (vide) → rempli par analogie dtCDDMA (anomalie R); topic_en/fr 'Dry period'→'Low'/'Faibles' (copier-coller depuis CDD, anomalie R); description_fr 'au moins de'→'au moins' corrigé (×12)"
+Precipitations/dtCWDSA_season.R,Precipitations/dtCWDSA_season.yaml,done,high,"4 vars; description_fr 'au moins de 1 mm'→'au moins 1 mm' corrigé (×4, anomalie R)"
+Precipitations/dtRA01mm.R,Precipitations/dtRA01mm.yaml,done,high,"apply_threshold lim=1 where='>=' select=all; topic_fr 'Faible'→'Faibles' corrigé (anomalie R)"
+Precipitations/dtRA20mm.R,Precipitations/dtRA20mm.yaml,done,high,"apply_threshold lim=20 where='>=' select=all; palette standard"
+Precipitations/dtRA50mm.R,Precipitations/dtRA50mm.yaml,done,high,"apply_threshold lim=50 where='>=' select=all; name_fr 'extrème'→'extrême' corrigé (anomalie R)"
+Precipitations/dtRMA01mm_month.R,Precipitations/dtRMA01mm_month.yaml,done,high,"12 vars; apply_threshold lim=1 where='>=' select=all; year-month+compress; topic_fr 'Faible'→'Faibles' corrigé (anomalie R)"
+Precipitations/dtRMA20mm_month.R,Precipitations/dtRMA20mm_month.yaml,done,high,"12 vars; apply_threshold lim=20 where='>=' select=all; year-month+compress; topic Heavy"
+Precipitations/dtRMA50mm_month.R,Precipitations/dtRMA50mm_month.yaml,done,high,"12 vars; apply_threshold lim=50 where='>=' select=all; year-month+compress; name_fr 'extrème'→'extrême' corrigé ×12 (anomalie R)"
+Precipitations/dtRSA01mm_season.R,Precipitations/dtRSA01mm_season.yaml,done,high,"4 vars; apply_threshold lim=1 where='>=' select=all; year-season+compress; topic_fr 'Faible'→'Faibles' corrigé (anomalie R)"
+Precipitations/dtRSA20mm_season.R,Precipitations/dtRSA20mm_season.yaml,done,high,"4 vars; apply_threshold lim=20 where='>=' select=all; year-season+compress; topic Heavy"
+Precipitations/dtRSA50mm_season.R,Precipitations/dtRSA50mm_season.yaml,done,high,"4 vars; apply_threshold lim=50 where='>=' select=all; year-season+compress; name_fr 'extrème'→'extrême' corrigé ×4 (anomalie R)"
+Precipitations/mean-RA.R,Precipitations/mean-RA.yaml,done,high,"variable_fr=moyenne-RA; P1 sumNA + P2 mean; to_normalise=false"
+Precipitations/mean-RSA_season.R,Precipitations/mean-RSA_season.yaml,done,high,"4 vars; P1 sumNA year-season+compress + P2 mean ×4; description_en absent dans R → '' ; variable_fr=moyenne-RA_*"
+Precipitations/RA_all.R,Precipitations/RA_all.yaml,done,high,"3 outputs P1 (RA/RAl/RAs); input_vars='R, Rl, Rs' (quoté); meta déclare RA uniquement"
+Precipitations/RA.R,Precipitations/RA.yaml,done,high,"sumNA 'R'; sampling_period='09-01'; to_normalise=false"
+Precipitations/RAl.R,Precipitations/RAl.yaml,done,high,"sumNA 'Rl'; input_vars=Rl; to_normalise=false"
+Precipitations/RAl_ratio.R,Precipitations/RAl_ratio.yaml,done,high,"P1 RA+RAl sumNA; P2 divided; input_vars='R, Rl' quoté"
+Precipitations/RA_ratio.R,Precipitations/RA_ratio.yaml,done,high,"name_fr 'précipitation'→'précipitations' corrigé (anomalie R); P3 produit Rl_ratio+Rs_ratio malgré meta='RA_ratio' (traduit fidèlement); palette=NULL omis"
+Precipitations/RAs.R,Precipitations/RAs.yaml,done,high,"sumNA 'Rs'; input_vars=Rs; to_normalise=false"
+Precipitations/RAs_ratio.R,Precipitations/RAs_ratio.yaml,done,high,"P1 RA+RAs sumNA; P2 divided; input_vars='R, Rs' quoté"
+Precipitations/RCXA1.R,Precipitations/RCXA1.yaml,done,high,"maxNA; adaptive sampling_period: funct=[min,'R',{skipna:true}]"
+Precipitations/RCXA5.R,Precipitations/RCXA5.yaml,done,high,"P1 rollsum_center k=5 time_step=none keep=all; P2 maxNA adaptive sampling_period min"
+Precipitations/RMAl_month.R,Precipitations/RMAl_month.yaml,done,high,"12 vars; sumNA 'Rl'; year-month+compress; double affectation name_en en R (valeur finale utilisée)"
+Precipitations/RMA_month.R,Precipitations/RMA_month.yaml,done,high,"12 vars; sumNA 'R'; year-month+compress"
+Precipitations/RMAs_month.R,Precipitations/RMAs_month.yaml,done,high,"12 vars; sumNA 'Rs'; year-month+compress; to_normalise NON SET en R (défaut true, contrairement aux fiches soeurs — anomalie R); reverse_palette=FALSE (champ inconnu, omis)"
+Precipitations/RSAl_season.R,Precipitations/RSAl_season.yaml,done,high,"4 vars; sumNA 'Rl'; year-season+compress; to_normalise=false; input_vars=Rl"
+Precipitations/RSA_season.R,Precipitations/RSA_season.yaml,done,high,"4 vars; sumNA 'R'; year-season+compress; to_normalise=false"
+Precipitations/RSAs_season.R,Precipitations/RSAs_season.yaml,done,high,"4 vars; sumNA 'Rs'; year-season+compress; to_normalise=false; input_vars=Rs"
+Sensitivity_to_Climate_Variability/epsilon_R.R,Sensitivity_to_Climate_Variability/epsilon_R.yaml,done,high,"2-step; P1 dual QA+RA mean; adaptive SP min('Q'); P2 compute_elasticity {Q: 'QA', X: 'RA'}; source=SANKARASUBRAMANIAN; input_vars='Q, R'"
+Sensitivity_to_Climate_Variability/epsilon_R_season.R,Sensitivity_to_Climate_Variability/epsilon_R_season.yaml,done,high,"4 vars; P1 dual QA+RA year-season compress; P2 4× compute_elasticity saisonniers; source=SANKARASUBRAMANIAN; input_vars='Q, R'"
+Sensitivity_to_Climate_Variability/epsilon_T.R,Sensitivity_to_Climate_Variability/epsilon_T.yaml,done,high,"2-step; P1 dual QA+TA mean; adaptive SP min('Q'); P2 compute_elasticity {Q: 'QA', X: 'TA'}; source=SANKARASUBRAMANIAN; input_vars='Q, T'"
+Sensitivity_to_Climate_Variability/epsilon_T_season.R,Sensitivity_to_Climate_Variability/epsilon_T_season.yaml,done,high,"4 vars; P1 dual QA+TA year-season compress; P2 4× compute_elasticity saisonniers; source=SANKARASUBRAMANIAN; input_vars='Q, T'"
+Sensitivity_to_Climate_Variability/RAT_ET0.R,Sensitivity_to_Climate_Variability/RAT_ET0.yaml,done,medium,"2-step; P1 BiasA=compute_Biais+ET0A=mean('ET0_obs'); P2 compute_RAT_X {thresh:0.05}; to_normalise=false; source=NICOLLE; ANOMALIE method_en dit 'mean temperatures' (devrait être ET0) — traduit fidèlement"
+Sensitivity_to_Climate_Variability/RAT_R.R,Sensitivity_to_Climate_Variability/RAT_R.yaml,done,medium,"2-step; P1 BiasA=compute_Biais+RA=mean('R_obs'); P2 compute_RAT_X {thresh:0.05}; to_normalise=false; source=NICOLLE; ANOMALIE method_en dit 'mean temperatures' (devrait être précipitations) — traduit fidèlement"
+Sensitivity_to_Climate_Variability/RAT_T.R,Sensitivity_to_Climate_Variability/RAT_T.yaml,done,high,"2-step; P1 BiasA=compute_Biais+TA=mean('T_obs'); P2 compute_RAT_X {thresh:0.05}; to_normalise=false; source=NICOLLE"
+Sensitivity_to_Climate_Variability/Rc.R,Sensitivity_to_Climate_Variability/Rc.yaml,done,high,"1-step; compute_Rc 'Q','R' (2 pos cols sans kwargs); time_step=none; NAyear_lim=10; pas de sampling_period en méta; ANOMALIE topic_en 'climate' minuscule corrigé"
+Temperature/mean-TA.R,Temperature/mean-TA.yaml,done,high,"2-step; P1 TA=mean('T'); P2 mean-TA=mean('TA'); to_normalise=false; palette bleue; ANOMALIE input_vars='Q' (bug R) corrigé en T"
+Temperature/mean-TSA_season.R,Temperature/mean-TSA_season.yaml,done,high,"4 vars; P1 TSA=mean('T') year-season compress; P2 4× mean(TSA_*); to_normalise=false; palette bleue; description_en='' (absent R)"
+Temperature/TA.R,Temperature/TA.yaml,done,high,"1-step; TA=mean('T'); to_normalise=false; palette bleue; input_vars=T"
+Temperature/TMA_month.R,Temperature/TMA_month.yaml,done,high,"12 vars; TMA=mean('T') year-month compress; to_normalise=false; palette bleue; EN=TMA_jan/.../dec; FR=TMA_janv/.../dec"
+Temperature/TSA_season.R,Temperature/TSA_season.yaml,done,high,"4 vars; TSA=mean('T') year-season compress; to_normalise=false; palette bleue; ANOMALIE name_fr 'Température hivernales annuelle'×4 → 'Températures ... annuelles'"

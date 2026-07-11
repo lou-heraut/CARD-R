@@ -1,0 +1,41 @@
+id: mean-TA
+version: "1.0"
+authors: []
+date: "2026-04-26"
+
+meta:
+  en:
+    variable: mean-TA
+    unit: "°C"
+    name: Average of annual average temperatures
+    description: ""
+    method: "1. annual aggregation [09-01, 08-31] - mean\n2. no temporal aggregation - average"
+    sampling_period: ["09-01", "08-31"]
+    topic: "Temperature, Average, Intensity"
+
+  fr:
+    variable: moyenne-TA
+    unit: "°C"
+    name: Moyenne des températures moyennes annuelles
+    description: ""
+    method: "1. agrégation annuelle [01-09, 31-08] - moyenne\n2. aucune agrégation temporelle - moyenne"
+    sampling_period: ["01-09", "31-08"]
+    topic: "Température, Moyenne, Intensité"
+
+  global:
+    input_vars: T
+    to_normalise: false
+    palette: ["#053061", "#2166AC", "#4393C3", "#92C5DE", "#D1E5F0",
+              "#FDDBC7", "#F4A582", "#D6604D", "#B2182B", "#67001F"]
+
+process:
+  P1:
+    funct:
+      TA: [mean, "T", {skipna: true}]
+    sampling_period: "09-01"
+    NApct_lim: 3
+    NAyear_lim: 10
+  P2:
+    funct:
+      mean-TA: [mean, "TA", {skipna: true}]
+    time_step: none

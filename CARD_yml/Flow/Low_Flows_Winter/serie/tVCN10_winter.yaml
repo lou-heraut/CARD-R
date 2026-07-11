@@ -1,0 +1,49 @@
+id: tVCN10_winter
+version: "1.0"
+authors: []
+date: "2026-04-30"
+
+meta:
+  en:
+    variable: tVCN10_winter
+    unit: yearday
+    name: Date of the winter minimum of 10-day mean flows
+    description: Months from November to April
+    method: |
+      1. no temporal aggregation - 10-day centered moving average
+      2. annual aggregation [11-01, 04-30] - date of the minimum
+    sampling_period: ["11-01", "04-30"]
+    topic: "Flow, Low Flows, Seasonality"
+
+  fr:
+    variable: tVCN10_hiver
+    unit: jour de l'année
+    name: Date du minimum hivernal des débits moyens sur 10 jours
+    description: Mois de novembre à avril
+    method: |
+      1. aucune agrégation temporelle - moyenne mobile centrée sur 10 jours
+      2. agrégation annuelle [01-11, 30-04] - date du minimum
+    sampling_period: ["01-11", "30-04"]
+    topic: "Débit, Basses Eaux, Saisonnalité"
+
+  global:
+    input_vars: Q
+    preferred_sampling_period: "01-01"
+    is_date: true
+    to_normalise: false
+    palette: ["#60265e", "#893687", "#c05fbe", "#dba3da", "#edd1ec",
+              "#f6ddd3", "#edbaa7", "#e08765", "#CD5629", "#8f3c1d"]
+
+process:
+  P1:
+    funct:
+      VC10_winter: [rollmean_center, "Q", {k: 10}]
+    time_step: none
+    keep: all
+
+  P2:
+    funct:
+      tVCN10_winter: [which.minNA, "VC10_winter", true]
+    sampling_period: ["11-01", "04-30"]
+    NApct_lim: 3
+    NAyear_lim: 10
