@@ -23,14 +23,17 @@ conversion elle-même : elle a détecté et corrigé un bug de conversion
 dans une fiche R (n-VCN10-5_H, commit 2f2243e).
 
 **Réorganisation du 2026-07-11 (phase A de la roadmap) — IMPORTANT :**
-le code Python et les fiches YAML ont QUITTÉ ce repo, qui redevient
+le code Python et les fiches YAML ont QUITTÉ ce repo (renommé CARD-R), qui redevient
 purement R. Nouvelle organisation :
 
-- `CARD_project/card/` — nouveau package Python `card` (repo git séparé) :
+- `CARD_project/card/` — package Python `card` (repo git séparé,
+  distribution PyPI prévue : `card-stase`, sigle : *CARD Aggregates
+  Recursive Diagnostics*) :
   fiches YAML dans `src/card/cards/`, fonctions hydro, tests et harnais
   de validation croisée. Voir `card/README.md` et `card/ROADMAP.md`.
-- `EXstat_project/exstat/` — nouveau package Python `exstat` (repo git
-  séparé) : moteur générique d'extraction (sampling adaptatif, sorties
+- `EXstat_project/stase/` — package Python `stase` (ex-exstat, renommé le
+  2026-07-12 ; STASE = *STatistical Aggregation & Stationarity
+  Evaluation*) : moteur générique d'extraction (sampling adaptatif, sorties
   vectorielles, kwargs-colonnes, colonnes creuses intégrés nativement).
 - Les anciens emplacements `CARD/CARD_yml/` et `CARD/CARD_py/` n'existent
   plus ; `dev/yaml_ref/` reste ici (5 fiches de référence historiques).
@@ -71,7 +74,7 @@ dev/yaml_ref/          # 5 fiches de référence validées (historique)
 # HORS de ce repo (réorganisation 2026-07-11) :
 ../card/               # package Python card — fiches YAML (src/card/cards/),
                        #   fonctions hydro, tests, harnais de validation
-../../EXstat_project/exstat/   # package Python exstat — moteur d'extraction
+../../EXstat_project/stase/    # package Python stase — moteur d'extraction
 ```
 
 ---
