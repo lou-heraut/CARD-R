@@ -1,7 +1,7 @@
-Package: CARD
+Package: CARD-R
 Version: 2.0.0
 Date: 2025-04-22
-Title: CARD
+Title: CARD-R
 Description: Card of Analyse and Diagnostic in R for a user-friendly experience of data aggregation with EXstat.
 Authors@R: c(
     person(given = "Louis",
@@ -40,7 +40,7 @@ Remotes:
     lou-heraut/EXstat
 RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
-URL: https://lou-heraut.github.io/CARD/
+URL: https://lou-heraut.github.io/CARD-R/
 Suggests:
     airGRdatasets,
     knitr,
