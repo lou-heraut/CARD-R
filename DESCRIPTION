@@ -1,7 +1,7 @@
-Package: CARD-R
+Package: CARD
 Version: 2.0.0
 Date: 2025-04-22
-Title: CARD-R
+Title: Card of Analysis and Diagnostic for Hydroclimatic Data
 Description: Card of Analyse and Diagnostic in R for a user-friendly experience of data aggregation with EXstat.
 Authors@R: c(
     person(given = "Louis",
