@@ -57,7 +57,7 @@
             "roleName": "Management"
         }
     ],
-    "codeRepository": "https://github.com/super-lou/CARD",
+    "codeRepository": "https://github.com/lou-heraut/CARD-R",
     "contributor": [
         {
             "id": "https://orcid.org/0000-0002-6595-7984",
@@ -95,5 +95,9 @@
     "name": "CARD",
     "programmingLanguage": "R 4.x.x",
     "softwareRequirements": "https://github.com/super-lou/EXstat",
-    "developmentStatus": "inactive"
+    "developmentStatus": "inactive",
+    "relatedLink": [
+        "https://github.com/lou-heraut/card",
+        "https://github.com/lou-heraut/card4r"
+    ]
 }

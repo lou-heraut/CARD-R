@@ -1,11 +1,27 @@
 # CARD [<img src="figures/flower_alt_hex.png" align="right" width=160 height=160 alt=""/>](https://github.com/lou-heraut/EXstat/)
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/lou-heraut/CARD/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/lou-heraut/CARD/actions/workflows/R-CMD-check.yaml)
-[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green)](https://lifecycle.r-lib.org/articles/stages.html)
-![](https://img.shields.io/github/last-commit/lou-heraut/CARD)
+[![R-CMD-check](https://github.com/lou-heraut/CARD-R/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/lou-heraut/CARD-R/actions/workflows/R-CMD-check.yaml)
+[![Lifecycle: superseded](https://img.shields.io/badge/lifecycle-superseded-blue)](https://lifecycle.r-lib.org/articles/stages.html)
+![](https://img.shields.io/github/last-commit/lou-heraut/CARD-R)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md) 
 <!-- badges: end -->
+
+> [!IMPORTANT]
+> **This package is superseded.** It still works and is not going away,
+> but it is no longer developed: only critical fixes are considered.
+>
+> The card collection now lives in
+> **[card](https://github.com/lou-heraut/card)**, written in Python, and
+> R users reach that same collection through
+> **[card4r](https://github.com/lou-heraut/card4r)**, a thin front that
+> calls it. **Switching does not change your numbers**: values from
+> `card4r` and from this package match to 1.8e-15, machine precision,
+> checked on 2026-08-05 and tested with every release of `card4r`.
+>
+> Why: keeping two corpora and two engines in step, with every variable
+> written twice, was not sustainable alongside the projects that depend
+> on it. One corpus, one engine, and one thin front per language.
 
 **CARD** is an efficient and user-friendly solution for aggregating daily hydroclimatological time series data in R, made possible through the use of parameterization files.
 
@@ -17,7 +33,7 @@ This project was carried out for National Research Institute for Agriculture, Fo
 ## Installation
 For latest development version in R
 ``` R
-remotes::install_github("lou-heraut/CARD")
+remotes::install_github("lou-heraut/CARD-R")
 ```
 
 
@@ -350,6 +366,16 @@ If we’re connected through work, why not reach out via email to see if we can 
 
 Refer to the [CONTRIBUTING file](.github/CONTRIBUTING.md) for contribution guidelines and help.
 
+
+## The ecosystem
+
+| | |
+|---|---|
+| [card](https://github.com/lou-heraut/card) | the card collection, in Python |
+| [stase](https://github.com/lou-heraut/stase) | the aggregation and trend engine |
+| [card4r](https://github.com/lou-heraut/card4r) | the same collection, called from R |
+| [card-api](https://github.com/lou-heraut/card-api) | the web service, on Hub'Eau discharge data |
+| **CARD-R** (you are here) · [EXstat](https://github.com/lou-heraut/EXstat) | the historical R packages, superseded |
 
 ## Code of Conduct
 Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
