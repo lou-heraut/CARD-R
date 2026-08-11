@@ -15,9 +15,9 @@
 > **[card](https://github.com/lou-heraut/card)**, written in Python, and
 > R users reach that same collection through
 > **[card4r](https://github.com/lou-heraut/card4r)**, a thin front that
-> calls it. **Switching does not change your numbers**: values from
-> `card4r` and from this package match to 1.8e-15, machine precision,
-> checked on 2026-08-05 and tested with every release of `card4r`.
+> calls it. **Switching does not change your numbers**: the two packages
+> are run on the same series in the test suite of `card4r`, so the
+> agreement is measured at every release rather than claimed here.
 >
 > Why: keeping two corpora and two engines in step, with every variable
 > written twice, was not sustainable alongside the projects that depend
