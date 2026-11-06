@@ -1,8 +1,5 @@
 # Copyright 2021-2025 Louis, Héraut <louis.heraut@inrae.fr>*1
 #           2025      David, Dorchies <david.dorchies@inrae.fr>*2
-#           2023      Éric, Sauquet <eric.sauquet@inrae.fr>*1
-#                     Jean-Philippe, Vidal <jean-philippe.vidal@inrae.fr>*1
-#                     Nathan, Pellerin
 #
 # *1 INRAE, UR RiverLy, Villeurbanne, France
 # *2 INRAE, UMR G-Eau, Montpellier, France
